@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# Virtual Doctor
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: [Nelson Tran](https://github.com/Grymrose), [INSERT NAME HERE](https://github.com/TobyShang), [INSERT NAME HERE](https://github.com/Caboose-Chengkun-Liao), [INSERT NAME HERE](https://github.com/Kal4shn1k0v), [INSERT NAME HERE]()
