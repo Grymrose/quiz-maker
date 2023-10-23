@@ -1,6 +1,3 @@
- > As we complete each section, we **will** remove the prompt text. Every *turnin* of this project includes points for formatting of this README, so we keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > We replace anything between \<...\> with our project specifics and remove angle brackets. For example, we need to name our project and replace the header right below this line with that title (no angle brackets). 
 # Quiz Maker
  
  > Authors: [Nelson Tran](https://github.com/Grymrose), [Yijun Shang](https://github.com/TobyShang), [Chengkun Liao](https://github.com/Caboose-Chengkun-Liao), [Daniel Zhang](https://github.com/Kal4shn1k0v), [Yunfan Li](https://github.com/UCRCSYunfanLi)
