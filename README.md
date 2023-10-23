@@ -1,29 +1,28 @@
  > As we complete each section, we **will** remove the prompt text. Every *turnin* of this project includes points for formatting of this README, so we keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > We replace anything between \<...\> with our project specifics and remove angle brackets. For example, we need to name our project and replace the header right below this line with that title (no angle brackets). 
-# Virtual Doctor
- > Our author list below include links to all members GitHub.
+# Quiz Maker
  
  > Authors: [Nelson Tran](https://github.com/Grymrose), [Yijun Shang](https://github.com/TobyShang), [Chengkun Liao](https://github.com/Caboose-Chengkun-Liao), [Daniel Zhang](https://github.com/Kal4shn1k0v), [Yunfan Li](https://github.com/UCRCSYunfanLi)
 
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
-
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
-
 ## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+ > The "**Quiz Maker**" project is important and interesting to us because it addresses the needs of both instructors and students. In the digital age, creating and managing quizzes efficiently is crucial for educators, and providing students with a user-friendly platform to take quizzes can enhance their learning experience. This project aligns technology with education, making it convenient for both teachers and learners, which we find compelling.
+ >
+ > We plan to implement the "**Quiz Maker**" application in **C++**.
+ >
+ > For the **input of our project**, instructors can upload text files representing question pools. These files contain different types of questions (e.g. multiple-choice, true/false, free response) and correct answers. The uploaded files can also specify the required question types and the number of questions for creating quizzes.
+ >
+ > For the **output of our project**, the application will generate quizzes based on the uploaded question pools. Instructors can customize the quizzes, including setting the number and types of questions. Students can access and take quizzes through the user interface.
+ >
+ > The "**Quiz Maker**" project will provide a range of **features** for instructors and students:
+ > * **Question Pool Upload**: Instructors can upload text files representing question pools in various formats, including plain text and JSON.
+ > * **Question Type Variety**: The system supports different question types, such as multiple-choice, true/false, and free response.
+ > * **Quiz Generation**: Instructors can automatically create quizzes by specifying the desired question types and the number of questions.
+ > * **Customization**: Instructors can edit and customize quizzes, including setting the number of questions and specific types.
+ > * **Sub-Questions**: Quizzes can contain questions consisting of sub-questions of different types.
+ > * **Student Access**: Students can access quizzes through a user-friendly web-based interface.
+ > * **Multiple Attempts**: Instructors can allow students to take quizzes once or multiple times, providing flexibility in assessment.
+ 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
