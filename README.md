@@ -19,6 +19,9 @@
  > * **Sub-Questions**: Quizzes can contain questions consisting of sub-questions of different types.
  > * **Student Access**: Students can access quizzes through a user-friendly web-based interface.
  > * **Multiple Attempts**: Instructors can allow students to take quizzes once or multiple times, providing flexibility in assessment.
+ > * **Quiz Scheduling**: Instructors can schedule quizzes to be available at specific dates and times, allowing for better time management in educational settings.
+ > * **Randomized Questions**: Provide an option for instructors to randomize the order of questions in quizzes, reducing the potential for cheating during online assessments.
+ > * **Export and Import Quizzes**: Allow instructors to export and import quizzes, enabling them to share quizzes with their colleagues or use them in different courses without the need to recreate them.
  
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
