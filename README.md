@@ -46,7 +46,7 @@
 > * **Create Quiz**: Instructors can create new quizzes, schedule quizzes, export or import quizzes, and enable randomization for added security. From here, the user will be brought to a different screen for editing the quiz.
 > * **Choose Quiz**: Instructors can choose what quiz they would to either edit or test depending on what choice they main in the main menu. Students can choose what quiz to take, as long as it's made available.
 > * **Edit Quiz**: Instructors can edit existing quizzes, or the one they just made. From here, the user is able to add, modify, or delete questions within a quiz. In addition, they can change when the quiz should be made available.
-> * **Take Quiz**: Students can take a quiz that they selected based on what was made available.
+> * **Take Quiz**: Instructors can test out quizzes they have made and Students can take a quiz that they selected based on what was made available.
 
 ### Screen Layouts
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
