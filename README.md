@@ -51,12 +51,36 @@
 ### Screen Layouts
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 > ![Screen Layouts](Screen-Layouts_Quiz-Maker.png)
-> **General Layout**: ???
-> * **"Main Menu" Screen**: ???
-> * **"Create Quiz" Screen**: ???
-> * **"Choose Quiz" Screen**: ???
-> * **"Edit Quiz" Screen**: ???
-> * **"Take Quiz" Screen**: ???
+> **General Layout**
+> * **Header**: Displays the name of the screen the user is on.
+> * **Main Content Area**: Displays screen-specific content, such as quiz details, list of quizzes, quiz-taking interface etc.
+> * **Navigation Footer**: Displays button(s) that take the user to another screen.
+> 
+> **"Main Menu" Screen**
+> * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Main Menu".
+> * **Main Content Area**: Lists three options for instructors. Students can only take quizzes. The "Create Quiz" button will bring the user directly to the "Create Quiz" screen, whereas the other two buttons will instead send the user to the "Choose Quiz" screen, as the "Edit Quiz" and "Take Quiz" screens need to have a quiz selected to function.
+> * **Footer**: Unlike the other screens, the navigation buttons are in the middle in the main menu. There will be a prompt for the user to sign in as an instructor or a student. They are signed in when one of the two circles at the footer are marked.
+> 
+> **"Create Quiz" Screen**
+> * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Create Quiz".
+> * **Main Content Area**: Prompts the user to choose an option. Each option will build a part of the new quiz.
+> * **Navigation Footer**: Displays three buttons. The "Back" button takes the user back to the main menu. The "Save Quiz" button saves the quiz. The "Edit Quiz" button that take the user to the "Edit Quiz" screen to finish editing the new quiz.
+> 
+> **"Choose Quiz" Screen**
+> * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Choose Quiz".
+> * **Main Content Area**: Displays all quizzes for instructors. Displays all available quizzes for students. The screen diagram shows an example of this for instructors where three quizzes are displayed, each with a different status of being closed, released, and not yet released.
+> * **Navigation Footer**: Displays the "Back" button, which takes the user back to the main menu. Also showcases the current date and time.
+> 
+> **"Edit Quiz" Screen**
+> * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Edit Quiz". Also displays what quiz is being edited (the screen diagram for this shows an example of this where "Quiz #3" is the one being edited).
+> * **Main Content Area**: Prompts the user to choose an option. Each option will adjust a part of the selected quiz.
+> * **Navigation Footer**: Displays three buttons. The "Back to Main Menu" button takes the user back to the main menu. The "Save Changes" button saves the new changes to the quiz. The "Quiz Demo" button that take the user to the "Take Quiz" screen to test out the quiz.
+> 
+> **"Take Quiz" Screen**
+> * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Take Quiz". Also displays the quiz being taken (the screen diagram for this shows an example of this where "Quiz #2" is the one being taken).
+> * **Main Content Area**: Displays the quiz questions. Answer choices will also display under questions if appropriate.
+> * **Navigation Footer**: Displays two buttons. The "Submit" button submits the quiz. The "Return to Main Menu" button sends the user to the main menu (only clickable after the quiz has been submitted).
+> 
 
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
