@@ -23,23 +23,10 @@ The "**Quiz Maker**" project will provide a range of **features** for instructor
 * **Randomized Questions**: Provide an option for instructors to randomize the order of questions in quizzes, reducing the potential for cheating during online assessments.
 * **Export and Import Quizzes**: Allow instructors to export and import quizzes, enabling them to share quizzes with their colleagues or use them in different courses without the need to recreate them.
 
-## Phase II
- > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
- > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` (aka Sprint Backlog) column.
- >   * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
- > * Schedule two check-ins using Calendly. You need to pick both time slots on Tuesday of week 6. The check-ins will occur on Zoom. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
+
+
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
-
 ### Navigation Diagram
-> Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
-
 ![User Navigation Diagram](User-Navigation-Diagram_Quiz-Maker.png)
 The user navigation diagram above illustrates how users can move between different screens within the "Quiz Maker" application. The diagram includes the following screens:
 * **Main Menu**: The starting point for both instructors and students. Instructors can create, edit, and test quizzes, while students can access and take quizzes.
@@ -49,8 +36,6 @@ The user navigation diagram above illustrates how users can move between differe
 * **Take Quiz**: Instructors can test out quizzes they have made and Students can take a quiz that they selected based on what was made available.
 
 ### Screen Layouts
-> Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
-
 ![Screen Layouts](Screen-Layouts_Quiz-Maker.png)
 **General Layout**
 * **Header**: Displays the name of the screen the user is on.
@@ -81,12 +66,24 @@ The user navigation diagram above illustrates how users can move between differe
 * **Header**: Follows the standard format by displaying the name of the screen the user is on, which is "Take Quiz". Also displays the quiz being taken (the screen diagram for this shows an example of this where "Quiz #2" is the one being taken).
 * **Main Content Area**: Displays the quiz questions. Answer choices will also display under questions if appropriate.
 * **Navigation Footer**: Displays two buttons. The "Submit" button submits the quiz. The "Return to Main Menu" button sends the user to the main menu (only clickable after the quiz has been submitted).
- 
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
-
 ![Class Diagram](Class-Diagram_Quiz-Maker.png)
+This class diagram represents the structure and relationships of the classes in the "Quiz Maker" application. The classes are categorized into three main types: Boundary, Entity, and Control classes, denoted by labels.
+**Boundary Class**
+* **Main Menu**: Represents the class that calls the others. This will be where most of the user interaction will be connect to. Has one attribute of a vector that holds objects of the User class and another to determine if someone is signed in or not (total of two attributes). It also provides three methods for creating, editing, & taking quizzes, and an additional method for adding new users into the program (total of four methods in this class).
+
+**Entity Classes**
+* **User**: This class represents a user for this program. It holds two String attributes for a username and a password. There are two methods for signing in and for signing out. Shares composition relationship with the Main Menu class.
+* **Instructor**: Derived class of User. Has one attribute of a vector that holds Quiz objects and has one method for viewing the vector of Quiz objects associated with the Instructor.
+* **Student**: Derived class of User. Has one attribute of a String that determines who the instructor is, and two attributes of vectors, one holding Quiz objects and one holding QuizSession objects (total of three attributes). Has three methods that lets a Student User join a class based off of an Instructor's username, view all available quizzes to be taken, and view all quizzes completed. 
+* **Quiz**: This class represents a quiz. There are six attributes for the quiz's ID integer, a String for the title, a vector of Question objects, a reference to the associated instructor, a boolean for the quiz's availability, and an integer for the number of attempts allowed. In addition, there are eight methods for adding a question, editing a question, removing a question, setting a title for the quiz, setting the instructor associated with the quiz, scheduling the quiz, setting the quiz's availability, and setting the number of attempts. This class is associated with the QuizSession class, shares an aggregation relationship with the Student class, and shares a composition relationship with the Instructor class.
+* **Question**: This class represents a question in a quiz. It has five attributes with a question's ID integer, the question type, a String of the text prompted, a vector of Strings for answer options if appropriate, and a String that holds the correct answer when approprate. There are four methods for adding an answer option, editing the prompt text, editing the answer options, and setting the correct answer (most of these do not apply to a free response question). Shares a composition relationship with the Quiz class.
+
+**Control Classes**
+* **QuizSession**: This class is for a quiz session. There's five attributes: a reference to a Quiz object, a reference to a Student object, a vector of Strings for answers, and two integers for a score and time elapsed. It has three methods to submit answers, get the score, and the time elapsed. Shares a composition relationship with the Student class, and shares an assocation with the Quiz class.
+* **QuestionPool**: This class manages a pool of questions, with an attribute for available questions. It provides methods to retrieve random questions and specific questions by ID. Associates with the Quiz and FileIO classes.
+* **FileIO**: Handles file input/output operations with an attribute of a String vector. Its methods can save and load data, enabling data persistence. Associates with the QuestionPool class.
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
