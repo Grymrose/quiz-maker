@@ -28,6 +28,7 @@ The "**Quiz Maker**" project will provide a range of **features** for instructor
 ## User Interface Specification
 ### Navigation Diagram
 ![User Navigation Diagram](User-Navigation-Diagram_Quiz-Maker.png)
+
 The user navigation diagram above illustrates how users can move between different screens within the "Quiz Maker" application. The diagram includes the following screens:
 * **Main Menu**: The starting point for both instructors and students. Instructors can create, edit, and test quizzes, while students can access and take quizzes.
 * **Create Quiz**: Instructors can create new quizzes, schedule quizzes, import quizzes, and enable randomization for added security. From here, the user will be brought to a different screen for editing the quiz.
@@ -37,6 +38,7 @@ The user navigation diagram above illustrates how users can move between differe
 
 ### Screen Layouts
 ![Screen Layouts](Screen-Layouts_Quiz-Maker.png)
+
 **General Layout**
 * **Header**: Displays the name of the screen the user is on.
 * **Main Content Area**: Displays screen-specific content, such as quiz details, list of quizzes, quiz-taking interface etc.
@@ -70,6 +72,7 @@ The user navigation diagram above illustrates how users can move between differe
 ## Class Diagram
 ![Class Diagram](Class-Diagram_Quiz-Maker.png)
 This class diagram represents the structure and relationships of the classes in the "Quiz Maker" application. The classes are categorized into three main types: Boundary, Entity, and Control classes, denoted by labels.
+
 **Boundary Class**
 * **Main Menu**: Represents the class that calls the others. This will be where most of the user interaction will be connect to. Has one attribute of a vector that holds objects of the User class and another to determine if someone is signed in or not (total of two attributes). It also provides three methods for creating, editing, & taking quizzes, and an additional method for adding new users into the program (total of four methods in this class).
 
