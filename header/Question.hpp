@@ -22,9 +22,9 @@ class Question {
         void SetCorrectAnswer(const std::string& answer);
         void SetQuestionType(QuestionType type);
     private:
-        unsigned QuestionID;
+        unsigned questionID;
         QuestionType questionType;
-        std::string Question;
+        std::string questionPrompt;
         std::vector<Option> options;
 };
 
