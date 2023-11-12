@@ -1,7 +1,31 @@
+#ifndef __QUESTION_HEADER__
+#define __QUESTION_HEADER__
+
 #include <string>
 #include <vector>
+#include <ostream>
 
 class Question{
+protected:
+	unsigned QuestionID;
+	unsigned PossiblePoints;
+	std::string MyQuestion;
+public:
+	Question(unsigned ID, unsigned Points, std::string MyQuestion);
+	virtual ~Question();
+	virtual void AddPossibleAnswer(std::string PossibleAnswer) = 0;
+	virtual void EditPossibleAnswer() = 0;
+	virtual unsigned ScoreQuestion(std::string StudentAnswer) = 0;
+};
+
+class QuestionMCQHelper{
+	
+	
+};
+
+#endif
+
+/*
 private:
 	unsigned QuestionID;
 	enum QuestionType{			//PLACEHOLDER: MCQ, FRQ

@@ -1,0 +1,25 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
+PROJECT(QUESTION_POOL)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
+
+INCLUDE_DIRECTORIES(header)
+
+SET(SOURCES
+	src/Question.cpp
+	src/QuestionMCQ.cpp
+	src/QuestionFRQ.cpp
+	test/TestQuestion.cpp
+)
+
+ADD_EXECUTABLE(RunAllTests
+	${SOURCES}
+)
+
+SET_TARGET_PROPERTIES(RunAllTests
+	PROPERTIES
+	RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
+)
+
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/test/googletest)
+target_link_libraries(RunAllTests gtest gtest_main)
