@@ -1,6 +1,7 @@
 #ifndef __QUESTION_FRQ_HEADER__
 #define __QUESTION_FRQ_HEADER__
 
+#include <iostream>
 #include <string>
 #include "../header/Question.hpp"
 
@@ -14,6 +15,7 @@ public:
 	void EditPossibleAnswer();
 	unsigned ScoreQuestion(std::string StudentAnswer);
 //	??	ManualScoreQuestion();
+	void PrintQuestion(std::ostream & Out) const;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef __QUESTION_MCQ_HEADER__
 #define __QUESTION_MCQ_HEADER__
 
+#include <iostream>
 #include <string>
 #include "../header/Question.hpp"
 
@@ -14,12 +15,14 @@ private:
 	};
 	PossibleAnswers * MyPossibleAnswers = nullptr;
 	std::string GenerateAnswerString();
+	void PrintPossibleAnswers(std::ostream &) const;
 public:
 	QuestionMCQ(unsigned ID, unsigned Points, std::string MyQuestion);
 	~QuestionMCQ();
 	void AddPossibleAnswer(std::string PossibleAnswerInput);
 	void EditPossibleAnswer();
 	unsigned ScoreQuestion(std::string StudentAnswer);
+	void PrintQuestion(std::ostream & Out) const;
 };
 
 #endif

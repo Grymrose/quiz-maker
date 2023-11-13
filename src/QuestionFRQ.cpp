@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include "QuestionFRQ.hpp"
 
@@ -10,22 +11,26 @@ QuestionFRQ::QuestionFRQ(unsigned ID, unsigned Points, std::string InputQuestion
 QuestionFRQ::~QuestionFRQ(){
 }
 
-void QuestionFRQ::AddPossibleAnswer(std::string InputAnswer){
-	PossibleAnswer = InputAnswer;
+void QuestionFRQ::AddPossibleAnswer(std::string InputAnswer){		//This function should only by called once.
+	if(PossibleAnswer == ""){
+		PossibleAnswer = InputAnswer;
+	}
 }
 
 void QuestionFRQ::EditPossibleAnswer(){
-	
-	
+	std::cout << "New correct answer: ";
+	std::cin >> PossibleAnswer;
+	std::cout << std::endl;
 }
 
 unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
 	if(PossibleAnswer == StudentAnswer){
 		return PossiblePoints;
+	}else{
+		return 0;
 	}
 }
-/*
-std::vector<std::string> QuestionFRQ::GetCorrectAnswers(){
-	return CorrecAnswers;
+
+void QuestionFRQ::PrintQuestion(std::ostream & Out) const{
+	Out << '(' << PossiblePoints << " Points) " << MyQuestion << std::endl;
 }
-*/

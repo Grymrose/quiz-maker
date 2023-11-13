@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <ostream>
+#include <iostream>
 
 class Question{
 protected:
@@ -16,11 +16,8 @@ public:
 	virtual void AddPossibleAnswer(std::string PossibleAnswer) = 0;
 	virtual void EditPossibleAnswer() = 0;
 	virtual unsigned ScoreQuestion(std::string StudentAnswer) = 0;
-};
-
-class QuestionMCQHelper{
-	
-	
+	virtual void PrintQuestion(std::ostream & Out) const = 0;
+	friend std::ostream & operator<<(std::ostream & out, const Question & Q);
 };
 
 #endif
