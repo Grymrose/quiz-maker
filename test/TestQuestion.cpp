@@ -43,12 +43,13 @@ TEST(TestQuestionMCQ, TestScoreQuestion){
 	delete MCQ;
 }
 
-TEST(TestQuestionMCQ, PrintQuestion){
+TEST(TestQuestionMCQ, TestPrintQuestion){
 	QuestionMCQ * MCQ = new QuestionMCQ(1234, 8, "What's 9 + 10?");
 	MCQ->AddPossibleAnswer("21.");
 	MCQ->AddPossibleAnswer("20.");
 	MCQ->AddPossibleAnswer("19.");
 //	MCQ
+	delete MCQ;
 }
 
 //QuestionFRQ
@@ -86,6 +87,6 @@ TEST(TestQuestionFRQ, TestScoreQuestiom){
 	delete FRQ;
 }
 
-TEST(TestQuestionFRQ, TestPrint){
+TEST(TestQuestionFRQ, TestPrintQuestion){
 
 }
