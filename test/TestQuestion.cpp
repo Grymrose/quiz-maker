@@ -68,7 +68,7 @@ TEST(TestQuestionFRQ, TestAddPossibleAnswer){
 TEST(TestQuestionFRQ, TestEditPossibleAnswer){
 	QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
 	FRQ->AddPossibleAnswer("Nothing.");
-	std::cout << "Edit to \"A\": " << std::endl;;
+	std::cout << "Edit to \"A\": " << std::endl;
 	EXPECT_NO_THROW(FRQ->EditPossibleAnswer());
 	unsigned Score = FRQ->ScoreQuestion("A");
 	EXPECT_EQ(16, Score);
