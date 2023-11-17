@@ -79,7 +79,7 @@ TEST(TestQuestionTF, TestEditPossibleAnswer) {
     TF->AddPossibleAnswer("False");
     std::cout << "Change \"A\" prompt to \"True\" and set to \"true\": " << std::endl;
     EXPECT_NO_THROW(TF->EditPossibleAnswer());
-    unsigned Score = TF->ScoreQuestion("True");
+    unsigned Score = TF->ScoreQuestion("A");
     EXPECT_EQ(10, Score);
     delete TF;
 }
@@ -92,7 +92,7 @@ TEST(TestQuestionTF, TestScoreQuestion) {
     TF->EditPossibleAnswer();
     std::cout << "Leave \"B\" prompt unchanged and set to \"false\": " << std::endl;
     TF->EditPossibleAnswer();
-    unsigned Score = TF->ScoreQuestion("True");
+    unsigned Score = TF->ScoreQuestion("A");
     EXPECT_EQ(10, Score);
     delete TF;
 }
