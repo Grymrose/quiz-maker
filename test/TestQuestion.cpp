@@ -69,15 +69,15 @@ TEST(TestQuestionTF, TestAddPossibleAnswer) {
     EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer2"));
 
     std::cout << "Final Possible Answers: " << std::endl;
-    EXPECT_NO_THROW(TF->PrintPossibleAnswers(std::cout));
+    EXPECT_NO_THROW(TF->PrintPossibleAnswers(std::cout)); // This should only show two answers!
     delete TF;
 }
 
 TEST(TestQuestionTF, TestEditPossibleAnswer) {
     QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    TF->AddPossibleAnswer("True");
     TF->AddPossibleAnswer("False");
-    std::cout << "Change \"True\" prompt to \"Yes\" and set to \"true\": " << std::endl;
+    TF->AddPossibleAnswer("False");
+    std::cout << "Change \"A\" prompt to \"True\" and set to \"true\": " << std::endl;
     EXPECT_NO_THROW(TF->EditPossibleAnswer());
     unsigned Score = TF->ScoreQuestion("True");
     EXPECT_EQ(10, Score);
@@ -86,11 +86,11 @@ TEST(TestQuestionTF, TestEditPossibleAnswer) {
 
 TEST(TestQuestionTF, TestScoreQuestion) {
     QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    TF->AddPossibleAnswer("True");
     TF->AddPossibleAnswer("False");
-    std::cout << "Leave \"True\" prompt unchanged and set to \"true\": " << std::endl;
+    TF->AddPossibleAnswer("True");
+    std::cout << "Leave \"A\" prompt unchanged and set to \"true\": " << std::endl;
     TF->EditPossibleAnswer();
-    std::cout << "Leave \"False\" prompt unchanged and set to \"false\": " << std::endl;
+    std::cout << "Leave \"B\" prompt unchanged and set to \"false\": " << std::endl;
     TF->EditPossibleAnswer();
     unsigned Score = TF->ScoreQuestion("True");
     EXPECT_EQ(10, Score);
