@@ -13,6 +13,7 @@ protected:
 public:
 	Question(unsigned ID, unsigned Points, std::string MyQuestion);
 	virtual ~Question();
+	void EditPossiblePoints();
     void EditQuestion(); // Adding an EditQuestion function!!
 	virtual void AddPossibleAnswer(std::string PossibleAnswer) = 0;
 	virtual void EditPossibleAnswer() = 0;

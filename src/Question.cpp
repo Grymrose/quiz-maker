@@ -12,6 +12,10 @@ Question::~Question(){
 
 }
 
+void Question::EditPossiblePoints() {
+	std::cin >> PossiblePoints;
+}
+
 void Question::EditQuestion() { // Adding an EditQuestion function!!
 	std::getline(std::cin, MyQuestion);
 }
