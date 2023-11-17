@@ -23,6 +23,8 @@ void QuestionTF::AddPossibleAnswer(std::string PossibleAnswer) {
 		MyPossibleAnswers = NewPossibleAnswer;
 		return;
 	}
+
+	AnswerCount++;
 }
 
 void QuestionTF::EditPossibleAnswer() {
