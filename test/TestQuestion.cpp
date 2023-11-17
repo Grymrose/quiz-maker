@@ -77,7 +77,7 @@ TEST(TestQuestionFRQ, TestScoreQuestion){
 	QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
 	FRQ->AddPossibleAnswer("Everything.");
 	FRQ->EditPossibleAnswer();
-	std::cout << "Enter same answer as previous: " << std::endl;;
+	std::cout << "Enter same answer as previous: ";
 	std::string Answer;
 	std::cin >> Answer;
 	std::cout << std::endl;
@@ -87,5 +87,9 @@ TEST(TestQuestionFRQ, TestScoreQuestion){
 }
 
 TEST(TestQuestionFRQ, TestPrintQuestion){
-
+    QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
+    FRQ->AddPossibleAnswer("Everything.");
+    std::cout << "Print Question: " << std::endl;
+    EXPECT_NO_THROW(FRQ->PrintQuestion(std::cout));
+    delete FRQ;
 }
