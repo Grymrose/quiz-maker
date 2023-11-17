@@ -14,6 +14,7 @@ public:
     ~QuestionTF();
     void AddPossibleAnswer(std::string PossibleAnswerInput);
     void EditPossibleAnswer();
+    void PrintQuestion(std::ostream & Out) const;
 };
 
 #endif

@@ -86,3 +86,13 @@ void QuestionTF::EditPossibleAnswer() {
 
 	std::cout << std::endl << std::endl;
 }
+
+void QuestionMCQ::PrintPossibleAnswers(std::ostream & Out) const {
+	PossibleAnswers* Temp = MyPossibleAnswers;
+	char Letter = 'A';
+	while(Temp != nullptr) {
+		Out << Letter << ": " << Temp->PossibleAnswer << std::endl;
+		Letter++;
+		Temp = Temp->Next;
+	}
+}
