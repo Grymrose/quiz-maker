@@ -10,7 +10,7 @@ class QuestionTF : public QuestionMCQ {
 private:
     unsigned AnswerCount = 0;
 public:
-    QuestionTF(unsigned ID, unsigned Points, std::string MyQuestion);
+    QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion);
     ~QuestionTF();
     void AddPossibleAnswer(std::string PossibleAnswerInput);
     void EditPossibleAnswer();
