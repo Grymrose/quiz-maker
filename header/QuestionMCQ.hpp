@@ -15,7 +15,6 @@ protected:
     };
     PossibleAnswers * MyPossibleAnswers = nullptr;
     std::string GenerateAnswerString();
-    void PrintPossibleAnswers(std::ostream &) const;
 public:
     QuestionMCQ(unsigned ID, unsigned Points, std::string MyQuestion);
     ~QuestionMCQ();
@@ -23,6 +22,7 @@ public:
     void EditPossibleAnswer();
     unsigned ScoreQuestion(std::string StudentAnswer);
     void PrintQuestion(std::ostream & Out) const;
+    void PrintPossibleAnswers(std::ostream & Out) const;
 };
 
 #endif
