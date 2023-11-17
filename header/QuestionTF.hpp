@@ -8,8 +8,7 @@
 
 class QuestionTF : public QuestionMCQ {
 private:
-    unsigned AnswerCount = 0;    
-    void PrintPossibleAnswers(std::ostream &) const;
+    unsigned AnswerCount = 0;
 public:
     QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion);
     ~QuestionTF();
