@@ -3,20 +3,10 @@
 #include <algorithm>
 #include "../header/QuestionTF.hpp"
 
-QuestionTF::QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion) : Question(ID, Points, InputQuestion) {
-	QuestionID = ID;
-	PossiblePoints = Points;
-	MyQuestion = InputQuestion;
-}
+QuestionTF::QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion) 
+          : QuestionMCQ(ID, Points, InputQuestion), AnswerCount(0) {}
 
-QuestionTF::~QuestionTF() {
-	PossibleAnswers* temp;
-	while(MyPossibleAnswers != nullptr){
-		temp = MyPossibleAnswers->Next;
-		delete MyPossibleAnswers;
-		MyPossibleAnswers = temp;
-	}
-};
+QuestionTF::~QuestionTF() {}
 
 void QuestionTF::AddPossibleAnswer(std::string PossibleAnswer) {
     if (numberOfAnswers == 2) {
