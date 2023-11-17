@@ -9,7 +9,7 @@ QuestionTF::QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion)
 QuestionTF::~QuestionTF() {}
 
 void QuestionTF::AddPossibleAnswer(std::string PossibleAnswer) {
-    if (numberOfAnswers == 2) {
+    if (AnswerCount == 2) {
         std::cout << "Cannot add more than 2 possible answers for True/False questions." << std::endl;
         return;
     }
