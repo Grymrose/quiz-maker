@@ -48,6 +48,8 @@ TEST(TestQuestionMCQ, TestPrintQuestion){
 	MCQ->AddPossibleAnswer("21.");
 	MCQ->AddPossibleAnswer("20.");
 	MCQ->AddPossibleAnswer("19.");
+	std::cout << "Print Question: " << std::endl;
+    EXPECT_NO_THROW(MCQ->PrintQuestion(std::cout));
 	delete MCQ;
 }
 
