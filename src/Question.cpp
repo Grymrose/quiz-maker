@@ -13,7 +13,7 @@ Question::~Question(){
 }
 
 void Question::EditQuestion() { // Adding an EditQuestion function!!
-
+	std::getline(std::cin, MyQuestion);
 }
 
 std::ostream & operator<<(std::ostream & out, const Question & Q){
