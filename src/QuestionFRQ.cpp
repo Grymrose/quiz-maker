@@ -19,7 +19,7 @@ void QuestionFRQ::AddPossibleAnswer(std::string InputAnswer){		//This function s
 
 void QuestionFRQ::EditPossibleAnswer(){
 	std::cout << "New correct answer: ";
-	std::cin >> PossibleAnswer;
+	std::getline(std::cin, PossibleAnswer);
 	std::cout << std::endl;
 }
 
