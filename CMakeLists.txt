@@ -10,6 +10,7 @@ SET(SOURCES
 	src/Question.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
+    src/QuestionTF.cpp
 	test/TestQuestion.cpp
 )
 

@@ -6,15 +6,15 @@
 #include "../header/Question.hpp"
 
 class QuestionFRQ : public Question{
-    private:
-        std::string PossibleAnswer = "";
-    public:
-        QuestionFRQ(unsigned ID, unsigned PossiblePoints, std::string MyQuestion);
-        ~QuestionFRQ();
-        void AddPossibleAnswer(std::string InputAnswer);
-        void EditPossibleAnswer();
-        unsigned ScoreQuestion(std::string StudentAnswer);
-        void PrintQuestion(std::ostream & Out) const;
+private:
+    std::string PossibleAnswer = "";
+public:
+    QuestionFRQ(unsigned ID, unsigned PossiblePoints, std::string MyQuestion);
+    ~QuestionFRQ();
+    void AddPossibleAnswer(std::string InputAnswer);
+    void EditPossibleAnswer();
+    unsigned ScoreQuestion(std::string StudentAnswer);
+    void PrintQuestion(std::ostream & Out) const;
 };
 
 #endif
