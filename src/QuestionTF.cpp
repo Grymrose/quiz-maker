@@ -14,6 +14,7 @@ void QuestionTF::AddPossibleAnswer(std::string PossibleAnswer) {
         return;
     }
     
+	AnswerCount++;
 	if(MyPossibleAnswers == nullptr) {
 		MyPossibleAnswers = new PossibleAnswers(PossibleAnswer);
 		return;
@@ -22,9 +23,7 @@ void QuestionTF::AddPossibleAnswer(std::string PossibleAnswer) {
 		NewPossibleAnswer->Next = MyPossibleAnswers;
 		MyPossibleAnswers = NewPossibleAnswer;
 		return;
-	}
-
-	AnswerCount++;
+	}	
 }
 
 void QuestionTF::EditPossibleAnswer() {
