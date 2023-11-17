@@ -6,7 +6,7 @@
 #include "../header/Question.hpp"
 
 class QuestionMCQ : public Question{
-private:
+protected:
     struct PossibleAnswers{
         std::string PossibleAnswer = "";
         bool Correctness = false;
