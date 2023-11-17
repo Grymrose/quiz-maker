@@ -14,7 +14,7 @@ public:
 	Question(unsigned ID, unsigned Points, std::string MyQuestion);
 	virtual ~Question();
 	void EditPossiblePoints();
-    void EditQuestion(); // Adding an EditQuestion function!!
+    void EditQuestion();
 	virtual void AddPossibleAnswer(std::string PossibleAnswer) = 0;
 	virtual void EditPossibleAnswer() = 0;
 	virtual unsigned ScoreQuestion(std::string StudentAnswer) = 0;

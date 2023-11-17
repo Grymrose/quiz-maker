@@ -48,7 +48,6 @@ TEST(TestQuestionMCQ, TestPrintQuestion){
 	MCQ->AddPossibleAnswer("21.");
 	MCQ->AddPossibleAnswer("20.");
 	MCQ->AddPossibleAnswer("19.");
-//	MCQ
 	delete MCQ;
 }
 
@@ -67,18 +66,18 @@ TEST(TestQuestionFRQ, TestAddPossibleAnswer){
 TEST(TestQuestionFRQ, TestEditPossibleAnswer){
 	QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
 	FRQ->AddPossibleAnswer("Nothing.");
-	std::cout << "Edit to \"A\": ";
+	std::cout << "Edit to \"A\": " << std::endl;;
 	EXPECT_NO_THROW(FRQ->EditPossibleAnswer());
 	unsigned Score = FRQ->ScoreQuestion("A");
 	EXPECT_EQ(16, Score);
 	delete FRQ;
 }
 
-TEST(TestQuestionFRQ, TestScoreQuestiom){
+TEST(TestQuestionFRQ, TestScoreQuestion){
 	QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
 	FRQ->AddPossibleAnswer("Everything.");
 	FRQ->EditPossibleAnswer();
-	std::cout << "Enter same answer as previous: ";
+	std::cout << "Enter same answer as previous: " << std::endl;;
 	std::string Answer;
 	std::cin >> Answer;
 	std::cout << std::endl;
