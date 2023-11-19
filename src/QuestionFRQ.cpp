@@ -31,6 +31,6 @@ unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
 	}
 }
 
-void QuestionFRQ::PrintQuestion(std::ostream & Out) const{
-	Out << '(' << PossiblePoints << " Points) " << MyQuestion << std::endl;
+void QuestionFRQ::PrintQuestion() const {
+	QuestionOutput::PrintQuestion(PossiblePoints, MyQuestion);
 }

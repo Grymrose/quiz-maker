@@ -14,7 +14,7 @@ public:
     void AddPossibleAnswer(std::string InputAnswer);
     void EditPossibleAnswer();
     unsigned ScoreQuestion(std::string StudentAnswer);
-    void PrintQuestion(std::ostream & Out) const;
+    void PrintQuestion() const;
 };
 
 #endif
