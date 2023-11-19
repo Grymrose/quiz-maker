@@ -80,7 +80,7 @@ unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
 		}
 		Temp = Temp->Next;
 	}
-	double Ratio = (NumberCorrect * (1.0 / static_cast<double>(StudentAnswer.size())));
+	double Ratio = (NumberCorrect / static_cast<double>(StudentAnswer.size()));
 	return abs(Ratio * PossiblePoints);
 }
 
