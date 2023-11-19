@@ -20,7 +20,7 @@ void Question::EditQuestion() {
 	std::getline(std::cin, MyQuestion);
 }
 
-std::ostream & operator<<(std::ostream & out, const Question & Q){
-	Q.PrintQuestion(out);
-	return out;
-}
+// std::ostream & operator<<(std::ostream & out, const Question & Q){
+// 	Q.PrintQuestion(out);
+// 	return out;
+// }

@@ -32,60 +32,37 @@ void QuestionMCQ::AddPossibleAnswer(std::string PossibleAnswer){
 	}
 }
 
-void QuestionMCQ::EditPossibleAnswer(){
-	PossibleAnswers * Temp = MyPossibleAnswers;					//Output all possible answers.
-	char Letter = 'A';
-	while(Temp != nullptr){
-		std::cout << Letter << ": " << Temp->PossibleAnswer << std::endl;
-		Letter++;
-		Temp = Temp->Next;
+void QuestionMCQ::EditPossibleAnswer() {
+    PossibleAnswers* temp = MyPossibleAnswers;  // Output all possible answers
+    char letter = 'A';
+    while (temp != nullptr) {
+        QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
+        letter++;
+        temp = temp->Next;
+    }
+
+    // User Prompt: Initial Guard
+    char changeChoice = QuestionOutput::GetUserInputChar("Choose question to edit by entering the corresponding letter: ");
+    
+    letter--;   // User Prompt: Second Guard
+    while (letter < changeChoice) {
+        changeChoice = QuestionOutput::GetUserInputChar("Bad entry/not found. Input as a single, capital, and alphabetical input: ");
+    }
+
+    temp = MyPossibleAnswers;   // Start Edit
+    unsigned answerNumber = (unsigned)changeChoice - 65;
+    for (unsigned i = 0; i < answerNumber; i++) {
+        temp = temp->Next;
+    }
+
+    std::string newAnswer;
+    newAnswer = QuestionOutput::GetUserInputString("New answer (\"SKIP\" to keep original): ");
+    if(newAnswer != "SKIP" && newAnswer != "skip"){
+		temp->PossibleAnswer = newAnswer;
 	}
 
-	std::cout << "Choose question to edit by entering the corresponding letter: ";	//User prompt: inital guard.
-	char ChangeChoice;
-	std::cin >> ChangeChoice;
-	while(std::cin.fail() || !isalpha(ChangeChoice)){
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Bad entry/not found. Input as a single, capital, and alphabetical input: ";
-		std::cin >> ChangeChoice;
-	}
-
-	Letter--;									//User prompt: second guard.
-	while(Letter < ChangeChoice){
-		std::cin.clear();
-		std::cin.ignore();
-		std::cout << "Bad entry/not found. Input as a single, capital, and alphabetical input: ";
-		std::cin >> ChangeChoice;
-	}
-
-	Temp = MyPossibleAnswers;							//Start edit.
-	unsigned AnswerNumber = (unsigned)ChangeChoice - 65;
-	for(unsigned i = 0; i < AnswerNumber; i++){
-		Temp = Temp->Next;
-	}
-	std::string NewAnswer;
-
-	std::cout << "New answer (\"SKIP\" to keep original): ";
-	std::cin >> NewAnswer;
-	if(NewAnswer != "SKIP" && NewAnswer != "skip"){
-		Temp->PossibleAnswer = NewAnswer;
-	}
-	std::cout << "Correctness state(1 for true, 0 for false, \"SKIP\" to keep original): ";
-	while(true){
-		std::cin >> NewAnswer;
-		if(NewAnswer == "1"){
-			Temp->Correctness = true;
-			break;
-		}else if(NewAnswer == "0"){
-			Temp->Correctness = false;
-			break;
-		}else if(NewAnswer != "SKIP" && NewAnswer != "skip"){
-			std::cout << "Bad entry. Only use 0, 1, or blank: ";
-		}
-	}
-
-	std::cout << std::endl << std::endl;
+    bool newCorrectness = QuestionOutput::GetCorrectnessFromUser();
+    temp->Correctness = newCorrectness;
 }
 
 unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
@@ -103,7 +80,6 @@ unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
 		}
 		Temp = Temp->Next;
 	}
-//std::cout<< NumberCorrect << "*(1/" << NumberTotal << ")-((" << StudentAnswer.size() << '-' << NumberCorrect << ")*(1/" << NumberTotal << ")))*" << PossiblePoints <<std::endl;
 	double Ratio = (NumberCorrect * (1 / (double)StudentAnswer.size()));
 	return abs(Ratio * PossiblePoints);
 }
@@ -122,17 +98,16 @@ std::string QuestionMCQ::GenerateAnswerString(){
 	return AnswerString;
 }
 
-void QuestionMCQ::PrintQuestion(std::ostream & Out) const{
-	Out << '(' << PossiblePoints << " Points) " << MyQuestion << std::endl;
-	PrintPossibleAnswers(Out);
+void QuestionMCQ::PrintQuestion() const {
+	QuestionOutput::PrintQuestion(PossiblePoints, MyQuestion);
 }
 
-void QuestionMCQ::PrintPossibleAnswers(std::ostream & Out) const{
-	PossibleAnswers * Temp = MyPossibleAnswers;
-	char Letter = 'A';
-	while(Temp != nullptr){
-		Out << Letter << ": " << Temp->PossibleAnswer << std::endl;
-		Letter++;
-		Temp = Temp->Next;
-	}
+void QuestionMCQ::PrintPossibleAnswers() const {
+	PossibleAnswers* temp = MyPossibleAnswers;
+    char letter = 'A';
+    while (temp != nullptr) {
+        QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
+        letter++;
+        temp = temp->Next;
+    }
 }
