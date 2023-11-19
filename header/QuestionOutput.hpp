@@ -1,5 +1,5 @@
-#ifndef __QUESTION_OUTPUT__
-#define __QUESTION_OUTPUT__
+#ifndef __QUESTION_OUTPUT_HEADER__
+#define __QUESTION_OUTPUT_HEADER__
 
 #include <iostream>
 #include <string>
