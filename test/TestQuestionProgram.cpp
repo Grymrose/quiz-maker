@@ -17,7 +17,7 @@ int main(){
 	myQuestions[1]->AddPossibleAnswer("LUL");
 
 	for(Question * Q : myQuestions) {
-		*Q->PrintQuestion();
+		Q->PrintQuestion();
 	}
 
 	cout << "FRQ: " << endl;
@@ -26,7 +26,7 @@ int main(){
 	myQuestions[1]->EditPossibleAnswer();
 
 	for(Question * Q : myQuestions){
-		*Q->PrintQuestion();
+		Q->PrintQuestion();
 	}
 
 	cout << "FRQ T1 (LEL): " << myQuestions[0]->ScoreQuestion("LEL") << endl;
