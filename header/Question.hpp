@@ -18,7 +18,7 @@ public:
 	virtual void AddPossibleAnswer(std::string PossibleAnswer) = 0;
 	virtual void EditPossibleAnswer() = 0;
 	virtual unsigned ScoreQuestion(std::string StudentAnswer) = 0;
-	virtual void PrintQuestion(std::ostream & Out) const = 0;
+	virtual void PrintQuestion() const = 0;
 	// friend std::ostream & operator<<(std::ostream & out, const Question & Q);
 };
 
