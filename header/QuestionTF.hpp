@@ -5,6 +5,7 @@
 #include <string>
 #include "../header/Question.hpp"
 #include "../header/QuestionMCQ.hpp"
+#include "../header/QuestionOutput.hpp"
 
 class QuestionTF : public QuestionMCQ {
 private:
