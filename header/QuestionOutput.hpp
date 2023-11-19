@@ -3,10 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "../header/Question.hpp"
-#include "../header/QuestionMCQ.hpp"
-#include "../header/QuestionTF.hpp"
-#include "../header/QuestionFRQ.hpp"
 
 class QuestionOutput {
 public:
