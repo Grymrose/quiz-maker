@@ -51,7 +51,7 @@ TEST(TestQuestionMCQ, TestPrintQuestion){
 	MCQ->AddPossibleAnswer("20.");
 	MCQ->AddPossibleAnswer("19.");
 	std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(MCQ->PrintQuestion(std::cout));
+    EXPECT_NO_THROW(MCQ->PrintQuestion());
 	delete MCQ;
 }
 
@@ -70,7 +70,7 @@ TEST(TestQuestionTF, TestAddPossibleAnswer) {
     EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer2"));
 
     std::cout << "Final Possible Answers: " << std::endl;
-    EXPECT_NO_THROW(TF->PrintPossibleAnswers(std::cout)); // This should only show two answers!
+    EXPECT_NO_THROW(TF->PrintPossibleAnswers()); // This should only show two answers!
     delete TF;
 }
 
@@ -103,7 +103,7 @@ TEST(TestQuestionTF, TestPrintQuestion) {
     TF->AddPossibleAnswer("True");
     TF->AddPossibleAnswer("False");
     std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(TF->PrintQuestion(std::cout));
+    EXPECT_NO_THROW(TF->PrintQuestion());
     delete TF;
 }
 
@@ -147,6 +147,6 @@ TEST(TestQuestionFRQ, TestPrintQuestion){
     QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
     FRQ->AddPossibleAnswer("Everything.");
     std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(FRQ->PrintQuestion(std::cout));
+    EXPECT_NO_THROW(FRQ->PrintQuestion());
     delete FRQ;
 }
