@@ -5,6 +5,7 @@
 #include "../header/QuestionMCQ.hpp"
 #include "../header/QuestionFRQ.hpp"
 #include "../header/QuestionTF.hpp"
+#include "../header/QuestionOutput.hpp"
 
 //QuestionMCQ
 
