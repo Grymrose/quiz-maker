@@ -88,7 +88,7 @@ unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer) {
 	}
 
 	// Calculate and return the score
-	double Ratio = (NumberCorrect / static_cast<double>(StudentAnswer.size()));
+	double Ratio = (NumberCorrect / static_cast<double>(NumberTotal));
 	return abs(Ratio * PossiblePoints);
 }
 
