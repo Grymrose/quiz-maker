@@ -12,9 +12,9 @@ class QuestionOutput {
 public:
     static void PrintQuestion(unsigned points, const std::string& question);
     static void PrintPossibleAnswer(char letter, const std::string& possibleAnswer);
-    char GetUserInputChar(const std::string& prompt);
-    std::string GetUserInputString(const std::string& prompt);
-    bool GetCorrectnessFromUser();
+    static char GetUserInputChar(const std::string& prompt);
+    static std::string GetUserInputString(const std::string& prompt);
+    static bool GetCorrectnessFromUser();
     static void PrintTFSpecific(const std::string& specificOutput);
     static void PrintMCQSpecific(const std::string& specificOutput);
 };
