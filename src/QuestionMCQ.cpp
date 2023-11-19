@@ -65,14 +65,20 @@ void QuestionMCQ::EditPossibleAnswer() {
     temp->Correctness = newCorrectness;
 }
 
-unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
+unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer) {
 	std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
 	std::string AnswerString = GenerateAnswerString();
-	std::sort(begin(StudentAnswer), end(StudentAnswer));
+
+	// Sort and find intersection
+	std::sort(StudentAnswer.begin(), StudentAnswer.end());
 	std::string Intersection;
-	std::set_intersection(begin(AnswerString), end(AnswerString), begin(StudentAnswer), end(StudentAnswer), back_inserter(Intersection));
+	std::set_intersection(AnswerString.begin(), AnswerString.end(),
+						  StudentAnswer.begin(), StudentAnswer.end(),
+						  std::back_inserter(Intersection));
 	unsigned NumberCorrect = Intersection.size();
 	unsigned NumberTotal = 0;
+
+	// Count total number of correct answers
 	PossibleAnswers * Temp = MyPossibleAnswers;
 	while(Temp != nullptr){
 		if(Temp->Correctness){
@@ -80,6 +86,8 @@ unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
 		}
 		Temp = Temp->Next;
 	}
+
+	// Calculate and return the score
 	double Ratio = (NumberCorrect / static_cast<double>(StudentAnswer.size()));
 	return abs(Ratio * PossiblePoints);
 }
