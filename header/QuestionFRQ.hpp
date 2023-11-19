@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "../header/Question.hpp"
+#include "../header/QuestionOutput.hpp"
 
 class QuestionFRQ : public Question{
 private:
