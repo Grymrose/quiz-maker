@@ -17,8 +17,10 @@ SET(SOURCES
 
 ADD_EXECUTABLE(TestProgram
 	src/Question.cpp
+	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
+	src/QuestionTF.cpp
 	test/TestQuestionProgram.cpp
 )
 
