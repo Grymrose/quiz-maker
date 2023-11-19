@@ -8,7 +8,7 @@ INCLUDE_DIRECTORIES(header)
 
 SET(SOURCES
 	src/Question.cpp
-	srd/QuestionOutput.cpp
+	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
     src/QuestionTF.cpp
