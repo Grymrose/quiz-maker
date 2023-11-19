@@ -11,8 +11,6 @@ public:
     static char GetUserInputChar(const std::string& prompt);
     static std::string GetUserInputString(const std::string& prompt);
     static bool GetCorrectnessFromUser();
-    static void PrintTFSpecific(const std::string& specificOutput);
-    static void PrintMCQSpecific(const std::string& specificOutput);
 };
 
 #endif
