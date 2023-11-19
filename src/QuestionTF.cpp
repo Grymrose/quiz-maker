@@ -4,7 +4,11 @@
 #include "../header/QuestionTF.hpp"
 
 QuestionTF::QuestionTF(unsigned ID, unsigned Points, std::string InputQuestion) 
-          : QuestionMCQ(ID, Points, InputQuestion), AnswerCount(0) {}
+          : QuestionMCQ(ID, Points, InputQuestion), AnswerCount(0) {
+	QuestionID = ID;
+	PossiblePoints = Points;
+	MyQuestion = InputQuestion;
+}
 
 QuestionTF::~QuestionTF() {}
 
