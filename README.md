@@ -91,28 +91,25 @@ This class diagram represents the structure and relationships of the classes in 
 * **QuizSession**: This class is for a quiz session. There's five attributes: a reference to a Quiz object, a reference to a Student object, a vector of Strings for answers, and two integers for a score and time elapsed. It has three methods to submit answers, get the score, and the time elapsed. Shares a composition relationship with the Student class, and shares an assocation with the Quiz class.
 * **QuestionPool**: This class manages a pool of questions, with an attribute for available questions. It provides methods to retrieve random questions and specific questions by ID. Associates with the Quiz and FileIO classes.
 * **FileIO**: Handles file input/output operations with an attribute of a String vector. Its methods can save and load data, enabling data persistence. Associates with the QuestionPool class.
- 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
 
- 
+## New Class Diagram (with S.O.L.I.D. Principles)
+![New Class Diagram considering S.O.L.I.D. Principles](Class-Diagram_SOLID_Quiz-Maker.png)
+#### Our old diagram had already followed some SOLID Principles
+* One SOLID Principle followed was the **Open-Closed Principle**.
+  * We applied this principle by ensuring that new subclasses could be added to the **User** and **Question** classes without needing to edit existing functions.
+  * This helps us write better code by allowing more freedom to add more potential customization to our program in the future if needed.
+* Another SOLID Principle followed was the **Liskov’s Substitution Principle**.
+  * We applied this principle by ensuring that our **Question** class's subclasses and the **User** class's subclasses are able to behave the same as their respective superclass.
+  * This helps us write better code by keeping our code clean to minimize bugs. Also helps our program's logic to be clear to both us, the programmers, and to the users.
+* Another SOLID Principle followed was the **Interface Segregation Principle**.
+  * We applied this principle by ensuring that our Question and User classes did not have any abstract functions forced onto their respective subclasses that couldn't apply said functions.
+  * This helps us write better code by allowing us to create subclasses of various types without worrying of implementing unnecessary functions due to forced pure abstract functions from their superclass.
+#### **CHANGE**: Added a new Control Class called "**QuestionOutput**".
+* The SOLID Principle applied with this change is the **Single Responsibility Principle**.
+  * We applied this principle by ensuring that our **Question** class and all of its subclasses only has functions relating to a question in a quiz. All printing capabilities are now a part of the **QuestionOutput** class.
+  * This change helps us write better code by allowing us to not worry about messing up printing functionalities when changing any code of the Question class and its subclasses.
+* The **QuestionOutput** class is for all printing purposes related to the Question class and its subclasses. There are five methods that can print a question, print a question's possible answers if appropriate, it get prompt the user for a character, it can prompt the user for a String, and can prompt the user to set a boolean.
+
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
