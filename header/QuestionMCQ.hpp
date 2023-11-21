@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "../header/Question.hpp"
+#include "../header/QuestionOutput.hpp"
 
 class QuestionMCQ : public Question{
 protected:
@@ -21,8 +22,8 @@ public:
     void AddPossibleAnswer(std::string PossibleAnswerInput);
     void EditPossibleAnswer();
     unsigned ScoreQuestion(std::string StudentAnswer);
-    void PrintQuestion(std::ostream & Out) const;
-    void PrintPossibleAnswers(std::ostream & Out) const;
+    void PrintQuestion() const;
+    void PrintPossibleAnswers() const;
 };
 
 #endif

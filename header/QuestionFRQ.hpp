@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "../header/Question.hpp"
+#include "../header/QuestionOutput.hpp"
 
 class QuestionFRQ : public Question{
 private:
@@ -14,7 +15,7 @@ public:
     void AddPossibleAnswer(std::string InputAnswer);
     void EditPossibleAnswer();
     unsigned ScoreQuestion(std::string StudentAnswer);
-    void PrintQuestion(std::ostream & Out) const;
+    void PrintQuestion() const;
 };
 
 #endif
