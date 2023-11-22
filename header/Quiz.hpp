@@ -1,6 +1,7 @@
 #ifndef __QUIZ_HEADER__
 #define __QUIZ_HEADER__
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -20,5 +21,7 @@ public:
     void setAvailability(bool availability);
 
     void setAttempts(int attempts);
-
+                     
+    void AddQuestion(Question question);
+    
 }
