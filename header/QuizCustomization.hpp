@@ -8,10 +8,6 @@
 
 class QuizCustomization{
 private:
-    int MCQAmounts;
-    int FRQAmounts;
-    int TFAmounts;
-
     int TimerHours;
     int TimerMinutes;
 
@@ -21,6 +17,12 @@ private:
 
     std::vector <std::string> Criteria;
     std::vector <unsigned> ID;
+
+protected:
+    int MCQAmounts;
+    int FRQAmounts;
+    int TFAmounts;
+
 public:
     void RecordMCQAmounts();
     void RecordFRQAmounts();
