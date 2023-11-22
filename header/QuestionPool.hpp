@@ -5,7 +5,9 @@
 
 class QuestionPool{
 private:
-	vector <Question> Questions;
+	std::vector <Question> MCQPool;
+	std::vector <Question> TFPool;
+	std::vector <Question> FRQPool;
 public:
 	QuestionPool();
 	~QuestionPool();
