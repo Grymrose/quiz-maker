@@ -6,15 +6,11 @@
 
 class QuizGeneration : public QuizCustomization, public Question{
 private:
-    std::vector <unsigned> MCQIDList;
-    std::vector <unsigned> TFIDList;
-    std::vector <unsigned> FRQIDList;
-
-    std::vector <unsigned> GeneratedQuiz;
+    std::vector <Question> GeneratedQuiz;
 public:
     virtual ~QuizGeneration() noexcept = default;
     void GenerateQuiz();
-    void GetMCQList();
-    void GetTFList();
-    void GetFRQList();
+    void GetMCQList(unsigned MCQID);
+    void GetTFList(unsigned TFID);
+    void GetFRQList(unsigned FRQID);
 };
