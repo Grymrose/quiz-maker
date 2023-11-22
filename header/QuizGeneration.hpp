@@ -10,8 +10,11 @@ private:
     std::vector <unsigned> TFIDList;
     std::vector <unsigned> FRQIDList;
 
+    std::vector <unsigned> GeneratedQuiz;
 public:
-    void GetMCQList(int MCQCount);
-    void GetTFList(int TFCount);
-    void GetFRQList(int FRQCount);
+    virtual ~QuizGeneration() noexcept = default;
+    void GenerateQuiz();
+    void GetMCQList();
+    void GetTFList();
+    void GetFRQList();
 };
