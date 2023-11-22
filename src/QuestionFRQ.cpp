@@ -18,9 +18,7 @@ void QuestionFRQ::AddPossibleAnswer(std::string InputAnswer){		//This function s
 }
 
 void QuestionFRQ::EditPossibleAnswer(){
-	std::cout << "New correct answer: ";
-	std::cin >> PossibleAnswer;
-	std::cout << std::endl;
+	PossibleAnswer = QuestionOutput::GetUserInputString("New correct answer: ");
 }
 
 unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
@@ -31,6 +29,6 @@ unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
 	}
 }
 
-void QuestionFRQ::PrintQuestion(std::ostream & Out) const{
-	Out << '(' << PossiblePoints << " Points) " << MyQuestion << std::endl;
+void QuestionFRQ::PrintQuestion() const {
+	QuestionOutput::PrintQuestion(PossiblePoints, MyQuestion);
 }

@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
-PROJECT(QUESTION_POOL)
+PROJECT(QUIZ_MAKER)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -8,15 +8,19 @@ INCLUDE_DIRECTORIES(header)
 
 SET(SOURCES
 	src/Question.cpp
+	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
+    src/QuestionTF.cpp
 	test/TestQuestion.cpp
 )
 
 ADD_EXECUTABLE(TestProgram
 	src/Question.cpp
+	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
+	src/QuestionTF.cpp
 	test/TestQuestionProgram.cpp
 )
 
