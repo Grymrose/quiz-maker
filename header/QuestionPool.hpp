@@ -10,5 +10,5 @@ public:
 	QuestionPool();
 	~QuestionPool();
 	Question GetRandomQuestion();
-	Question GetQuestionByID(int QuestionID);
+	Question GetQuestionByID(unsigned QuestionID);
 }
