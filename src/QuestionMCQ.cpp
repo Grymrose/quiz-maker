@@ -32,49 +32,47 @@ void QuestionMCQ::AddPossibleAnswer(std::string PossibleAnswer){
 	}
 }
 
-void QuestionMCQ::EditPossibleAnswer() {
-    PossibleAnswers* temp = MyPossibleAnswers;  // Output all possible answers
-    char letter = 'A';
-    while (temp != nullptr) {
-        QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
-        letter++;
-        temp = temp->Next;
-    }
+void QuestionMCQ::EditPossibleAnswer(){
+	PossibleAnswers* temp = MyPossibleAnswers;  // Output all possible answers
+	char letter = 'A';
+	while(temp != nullptr){
+		QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
+		letter++;
+		temp = temp->Next;
+	}
 
-    // User Prompt: Initial Guard
-    char changeChoice = QuestionOutput::GetUserInputChar("Choose question to edit by entering the corresponding letter: ");
-    
-    letter--;   // User Prompt: Second Guard
-    while (letter < changeChoice) {
-        changeChoice = QuestionOutput::GetUserInputChar("Bad entry/not found. Input as a single, capital, and alphabetical input: ");
-    }
+	// User Prompt: Initial Guard
+	char changeChoice = QuestionOutput::GetUserInputChar("Choose question to edit by entering the corresponding letter: ");
 
-    temp = MyPossibleAnswers;   // Start Edit
-    unsigned answerNumber = (unsigned)changeChoice - 65;
-    for (unsigned i = 0; i < answerNumber; i++) {
-        temp = temp->Next;
-    }
+	letter--;   // User Prompt: Second Guard
+	while(letter < changeChoice){
+		changeChoice = QuestionOutput::GetUserInputChar("Bad entry/not found. Input as a single, capital, and alphabetical input: ");
+	}
 
-    std::string newAnswer;
-    newAnswer = QuestionOutput::GetUserInputString("New answer (\"SKIP\" to keep original): ");
-    if(newAnswer != "SKIP" && newAnswer != "skip"){
+	temp = MyPossibleAnswers;   // Start Edit
+	unsigned answerNumber = (unsigned)changeChoice - 65;
+	for(unsigned i = 0; i < answerNumber; i++){
+		temp = temp->Next;
+	}
+
+	std::string newAnswer;
+	newAnswer = QuestionOutput::GetUserInputString("New answer (\"SKIP\" to keep original): ");
+	if(newAnswer != "SKIP" && newAnswer != "skip"){
 		temp->PossibleAnswer = newAnswer;
 	}
 
-    bool newCorrectness = QuestionOutput::GetCorrectnessFromUser();
-    temp->Correctness = newCorrectness;
+	bool newCorrectness = QuestionOutput::GetCorrectnessFromUser();
+	temp->Correctness = newCorrectness;
 }
 
-unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer) {
+unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
 	std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
 	std::string AnswerString = GenerateAnswerString();
 
 	// Sort and find intersection
 	std::sort(StudentAnswer.begin(), StudentAnswer.end());
 	std::string Intersection;
-	std::set_intersection(AnswerString.begin(), AnswerString.end(),
-						  StudentAnswer.begin(), StudentAnswer.end(),
-						  std::back_inserter(Intersection));
+	std::set_intersection(AnswerString.begin(), AnswerString.end(), StudentAnswer.begin(), StudentAnswer.end(), std::back_inserter(Intersection));
 	unsigned NumberCorrect = Intersection.size();
 	unsigned NumberTotal = 0;
 
@@ -112,10 +110,10 @@ void QuestionMCQ::PrintQuestion() const {
 
 void QuestionMCQ::PrintPossibleAnswers() const {
 	PossibleAnswers* temp = MyPossibleAnswers;
-    char letter = 'A';
-    while (temp != nullptr) {
-        QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
-        letter++;
-        temp = temp->Next;
-    }
+	char letter = 'A';
+	while(temp != nullptr){
+		QuestionOutput::PrintPossibleAnswer(letter, temp->PossibleAnswer);
+		letter++;
+		temp = temp->Next;
+	}
 }

@@ -20,6 +20,11 @@ void Question::EditQuestion() {
 	std::getline(std::cin, MyQuestion);
 }
 
+unsigned Question::GetQuestionID(){
+	return QuestionID;
+}
+
+
 // std::ostream & operator<<(std::ostream & out, const Question & Q){
 // 	Q.PrintQuestion(out);
 // 	return out;
