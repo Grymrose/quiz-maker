@@ -11,24 +11,34 @@ SET(SOURCES
 	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
-    src/QuestionTF.cpp
-	test/TestQuestion.cpp
+	src/QuestionTF.cpp
+	src/QuestionPool.cpp
 )
 
 ADD_EXECUTABLE(TestProgram
-	src/Question.cpp
-	src/QuestionOutput.cpp
-	src/QuestionMCQ.cpp
-	src/QuestionFRQ.cpp
-	src/QuestionTF.cpp
+	${SOURCES}
 	test/TestQuestionProgram.cpp
 )
 
-ADD_EXECUTABLE(RunAllTests
-	${SOURCES}
+TARGET_COMPILE_OPTIONS(TestProgram
+	PRIVATE -g
 )
 
-TARGET_COMPILE_OPTIONS(TestProgram
+ADD_EXECUTABLE(RunQuestionTests
+	${SOURCES}
+	test/TestQuestion.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuestionTests
+	PRIVATE -g
+)
+
+ADD_EXECUTABLE(RunQuestionPoolTests
+	${SOURCES}
+	test/TestQuestionPool.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuestionPoolTests
 	PRIVATE -g
 )
 
@@ -38,4 +48,6 @@ TARGET_COMPILE_OPTIONS(TestProgram
 #)
 
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/test/googletest)
-target_link_libraries(RunAllTests gtest gtest_main)
+target_link_libraries(RunQuestionTests gtest gtest_main)
+target_link_libraries(RunQuestionPoolTests gtest gtest_main)
+

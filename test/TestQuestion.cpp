@@ -7,6 +7,13 @@
 #include "../header/QuestionTF.hpp"
 #include "../header/QuestionOutput.hpp"
 
+//Question
+
+TEST(TestQuestionBase, GetQuestionID){
+	Question * TF = new QuestionTF(5678, 10, "Am I sentient?");
+	EXPECT_EQ(5678, TF->GetQuestionID());
+}
+
 //QuestionMCQ
 
 TEST(TestQuestionMCQ, TestConstructor){
@@ -51,60 +58,60 @@ TEST(TestQuestionMCQ, TestPrintQuestion){
 	MCQ->AddPossibleAnswer("20.");
 	MCQ->AddPossibleAnswer("19.");
 	std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(MCQ->PrintQuestion());
+	EXPECT_NO_THROW(MCQ->PrintQuestion());
 	delete MCQ;
 }
 
 // QuestionTF
 
-TEST(TestQuestionTF, TestConstructor) {
-    EXPECT_NO_THROW(QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?"));
+TEST(TestQuestionTF, TestConstructor){
+	EXPECT_NO_THROW(QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?"));
 }
 
-TEST(TestQuestionTF, TestAddPossibleAnswer) {
-    QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    EXPECT_NO_THROW(TF->AddPossibleAnswer("True"));
-    EXPECT_NO_THROW(TF->AddPossibleAnswer("False"));
-    // Try adding more than 2 answers, it should not allow
-    EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer"));
-    EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer2"));
+TEST(TestQuestionTF, TestAddPossibleAnswer){
+	QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
+	EXPECT_NO_THROW(TF->AddPossibleAnswer("True"));
+	EXPECT_NO_THROW(TF->AddPossibleAnswer("False"));
+	// Try adding more than 2 answers, it should not allow
+	EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer"));
+	EXPECT_NO_THROW(TF->AddPossibleAnswer("InvalidAnswer2"));
 
-    std::cout << "Final Possible Answers: " << std::endl;
-    EXPECT_NO_THROW(TF->PrintPossibleAnswers()); // This should only show two answers!
-    delete TF;
+	std::cout << "Final Possible Answers: " << std::endl;
+	EXPECT_NO_THROW(TF->PrintPossibleAnswers()); // This should only show two answers!
+	delete TF;
 }
 
-TEST(TestQuestionTF, TestEditPossibleAnswer) {
-    QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    TF->AddPossibleAnswer("False");
-    TF->AddPossibleAnswer("False");
-    std::cout << "Change \"A\" prompt to \"True\" and set to \"true\": " << std::endl;
-    EXPECT_NO_THROW(TF->EditPossibleAnswer());
-    unsigned Score = TF->ScoreQuestion("A");
-    EXPECT_EQ(10, Score);
-    delete TF;
+TEST(TestQuestionTF, TestEditPossibleAnswer){
+	QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
+	TF->AddPossibleAnswer("False");
+	TF->AddPossibleAnswer("False");
+	std::cout << "Change \"A\" prompt to \"True\" and set to \"true\": " << std::endl;
+	EXPECT_NO_THROW(TF->EditPossibleAnswer());
+	unsigned Score = TF->ScoreQuestion("A");
+	EXPECT_EQ(10, Score);
+	delete TF;
 }
 
-TEST(TestQuestionTF, TestScoreQuestion) {
-    QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    TF->AddPossibleAnswer("False");
-    TF->AddPossibleAnswer("True");
-    std::cout << "Leave \"A\" prompt unchanged and set to \"true\": " << std::endl;
-    TF->EditPossibleAnswer();
-    std::cout << "Leave \"B\" prompt unchanged and set to \"false\": " << std::endl;
-    TF->EditPossibleAnswer();
-    unsigned Score = TF->ScoreQuestion("A");
-    EXPECT_EQ(10, Score);
-    delete TF;
+TEST(TestQuestionTF, TestScoreQuestion){
+	QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
+	TF->AddPossibleAnswer("False");
+	TF->AddPossibleAnswer("True");
+	std::cout << "Leave \"A\" prompt unchanged and set to \"true\": " << std::endl;
+	TF->EditPossibleAnswer();
+	std::cout << "Leave \"B\" prompt unchanged and set to \"false\": " << std::endl;
+	TF->EditPossibleAnswer();
+	unsigned Score = TF->ScoreQuestion("A");
+	EXPECT_EQ(10, Score);
+	delete TF;
 }
 
-TEST(TestQuestionTF, TestPrintQuestion) {
-    QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
-    TF->AddPossibleAnswer("True");
-    TF->AddPossibleAnswer("False");
-    std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(TF->PrintQuestion());
-    delete TF;
+TEST(TestQuestionTF, TestPrintQuestion){
+	QuestionTF * TF = new QuestionTF(5678, 10, "Is the sky blue?");
+	TF->AddPossibleAnswer("True");
+	TF->AddPossibleAnswer("False");
+	std::cout << "Print Question: " << std::endl;
+	EXPECT_NO_THROW(TF->PrintQuestion());
+	delete TF;
 }
 
 //QuestionFRQ
@@ -144,9 +151,9 @@ TEST(TestQuestionFRQ, TestScoreQuestion){
 }
 
 TEST(TestQuestionFRQ, TestPrintQuestion){
-    QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
-    FRQ->AddPossibleAnswer("Everything.");
-    std::cout << "Print Question: " << std::endl;
-    EXPECT_NO_THROW(FRQ->PrintQuestion());
-    delete FRQ;
+	QuestionFRQ * FRQ = new QuestionFRQ(1234, 16, "What happened in 1986?");
+	FRQ->AddPossibleAnswer("Everything.");
+	std::cout << "Print Question: " << std::endl;
+	EXPECT_NO_THROW(FRQ->PrintQuestion());
+	delete FRQ;
 }
