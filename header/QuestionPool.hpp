@@ -13,4 +13,4 @@ public:
 	~QuestionPool();
 	Question GetRandomQuestion();
 	Question GetQuestionByID(unsigned QuestionID);
-}
+};
