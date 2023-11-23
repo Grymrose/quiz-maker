@@ -11,6 +11,6 @@ private:
 public:
 	QuestionPool();
 	~QuestionPool();
-	Question GetRandomQuestion();
+	Question GetRandomQuestion(std::string QuestionType);
 	Question GetQuestionByID(unsigned QuestionID);
 };
