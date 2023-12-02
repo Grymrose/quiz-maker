@@ -1,3 +1,6 @@
+#ifndef __USER_HEADER__
+#define __USER_HEADER__
+
 #include <string>
 
 class User {
@@ -5,6 +8,10 @@ class User {
         std::string username;
         std::string password;
     public:
-        void Login(username, password);
+        User(std::string username, std::string password)
+                    : username(username), password(password) {}
+        void Login(usernameEntered, passwordEntered);
         void Logout();
 }
+
+#endif
