@@ -1,10 +1,5 @@
 #include "../header/User.hpp"
 
-void User::Login(usernameEntered, passwordEntered) {
-    username = usernameEntered;
-    password = passwordEntered;
-}
-
-void User::Logout() {
-
+bool User::Login(usernameEntered, passwordEntered) {
+    (username == usernameEntered && password == passwordEntered) ? return true : return false;
 }

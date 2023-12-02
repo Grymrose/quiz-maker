@@ -7,11 +7,11 @@ class User {
     protected:
         std::string username;
         std::string password;
+        bool isInstructor;
     public:
-        User(std::string username, std::string password)
-                    : username(username), password(password) {}
-        void Login(usernameEntered, passwordEntered);
-        void Logout();
+        User(std::string username, std::string password, bool isInstructor)
+                    : username(username), password(password), isInstructor(isInstructor) {}
+        bool Login(usernameEntered, passwordEntered);
 }
 
 #endif
