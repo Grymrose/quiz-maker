@@ -1,5 +1,5 @@
 #include "../header/Instructor.hpp"
 
-vector<Quiz> Instructor::ViewQuizzes() {
+std::vector<Quiz> Instructor::ViewQuizzes() {
     return quizzes;
 }

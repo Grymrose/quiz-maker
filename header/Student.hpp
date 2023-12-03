@@ -12,12 +12,12 @@
 class Student : public User {
     private:
         std::string instructorName;
-        vector<Quiz> quizzesToDo;
-        vector<QuizSession> takenQuizzes;
+        std::vector<Quiz> quizzesToDo;
+        std::vector<QuizSession> takenQuizzes;
     public:
         void JoinClass(std::string instructor);
-        vector<Quiz> ViewAvailableQuizzes();
-        vector<QuizSession> ViewCompletedQuizzes();
+        std::vector<Quiz> ViewAvailableQuizzes();
+        std::vector<QuizSession> ViewCompletedQuizzes();
 }
 
 #endif
