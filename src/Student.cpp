@@ -6,11 +6,11 @@ void Student::JoinClass(std::string instructor) {
 }
 
 //get QuizzesToDo
-vector <Quiz> Student::ViewAvailableQuizzes() {
+vector<Quiz> Student::ViewAvailableQuizzes() {
     return quizzesToDo;
 }
 
 //get takenQuizzes
-vector <QuizSession> Student::ViewCompletedQuizzes() {
+vector<QuizSession> Student::ViewCompletedQuizzes() {
     return takenQuizzes;
 }

@@ -15,12 +15,9 @@ class Student : public User {
         vector<Quiz> quizzesToDo;
         vector<QuizSession> takenQuizzes;
     public:
-        Student();
-        ~Student() {}
         void JoinClass(std::string instructor);
         vector<Quiz> ViewAvailableQuizzes();
         vector<QuizSession> ViewCompletedQuizzes();
-
 }
 
 #endif
