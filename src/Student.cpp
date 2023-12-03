@@ -1,22 +1,16 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include "../header/Student.hpp"
 
 //give instructorName
-void Student::JoinClass(std::string instructor)
-{
-    InstructorName = instructor;
+void Student::JoinClass(std::string instructor) {
+    instructorName = instructor;
 }
 
 //get QuizzesToDo
-vector <Quiz> Student::ViewAvailableQuizzes()
-{
-    return QuizzesToDo;
+vector <Quiz> Student::ViewAvailableQuizzes() {
+    return quizzesToDo;
 }
 
 //get takenQuizzes
-vector <QuizSession> Student::ViewCompletedQuizzes()
-{
-    return TakenQuizzes;
+vector <QuizSession> Student::ViewCompletedQuizzes() {
+    return takenQuizzes;
 }
