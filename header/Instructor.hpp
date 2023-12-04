@@ -11,6 +11,6 @@ class Instructor : public User {
     public:
         void AddQuiz(const Quiz& quiz);
         std::vector<Quiz> GetQuizzes();
-}
+};
 
 #endif

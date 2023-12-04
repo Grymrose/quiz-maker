@@ -11,6 +11,6 @@ class User {
     public:
         User(std::string username, std::string password, bool isInstructor);
         bool Login(std::string usernameEntered, std::string passwordEntered);
-}
+};
 
 #endif

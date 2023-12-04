@@ -21,6 +21,6 @@ class Student : public User {
         void AddTakenQuiz(const QuizSession& completedQuizSession);
         std::vector<Quiz> ViewAvailableQuizzes();
         std::vector<QuizSession> ViewCompletedQuizzes();
-}
+};
 
 #endif
