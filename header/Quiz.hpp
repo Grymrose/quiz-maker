@@ -1,6 +1,6 @@
 #ifndef __QUIZ_HEADER__
 #define __QUIZ_HEADER__
-
+#include "../header/Question.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -24,6 +24,6 @@ public:
                      
     void AddQuestion(Question question);
     
-}
+};
 
 #endif
