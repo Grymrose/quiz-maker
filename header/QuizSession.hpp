@@ -9,7 +9,7 @@ class QuizSession{
         int score;
         int timeElapsed;
     public:
-        void SubmitAnswers(std::vector<std::string> answers);
+        void SubmitAnswers(std::vector<std::string> inputAnswers);
         int GetScore();
         int GetTimeElapsed();
 };
