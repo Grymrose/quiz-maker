@@ -19,6 +19,8 @@ SET(SOURCES
 	src/QuestionFRQ.cpp
 	src/QuestionTF.cpp
 	src/QuestionPool.cpp
+	src/Quiz.cpp
+	src/QuizSession.cpp
 )
 
 ADD_EXECUTABLE(TestProgram
