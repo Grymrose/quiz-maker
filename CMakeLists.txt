@@ -4,7 +4,10 @@ PROJECT(QUIZ_MAKER)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-INCLUDE_DIRECTORIES(header)
+INCLUDE_DIRECTORIES(
+	header
+	test/googletest/googletest/include
+)
 
 SET(SOURCES
 	src/Question.cpp
