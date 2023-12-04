@@ -17,6 +17,7 @@ void Quiz::setAvailability(bool availability) {
 
 void Quiz::setAttempts(int attempts) {
     Attempts = attempts;
+}
 
 void scheduleQuiz(Quiz& quiz);{
     struct Time {
@@ -48,5 +49,4 @@ void scheduleQuiz(Quiz& quiz);{
             cout << Month << "," << Day << ","<< Year << " " << Hour << ":" << Minute << ":"<< Second;
         }
     };
-}
 }
