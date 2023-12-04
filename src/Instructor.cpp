@@ -1,5 +1,9 @@
 #include "../header/Instructor.hpp"
 
-std::vector<Quiz> Instructor::ViewQuizzes() {
+void Instructor::AddQuiz(const Quiz& quiz) {
+    quizzes.push_back(quiz);
+}
+
+std::vector<Quiz> Instructor::GetQuizzes() {
     return quizzes;
 }

@@ -6,6 +6,9 @@
 #include "../header/Instructor.hpp"
 #include "../header/Student.hpp"
 #include "../header/Quiz.hpp"
+#include "../header/QuizSession.hpp"
+
+//  User Tests
 
 TEST(TestUser, LoginSuccess) {
     User aUser("Artoria", "Pendragon", true);
@@ -13,7 +16,7 @@ TEST(TestUser, LoginSuccess) {
     users.push_back(aUser);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Artoria", "Pendragon")) {
+        if (user.Login("Artoria", "Pendragon")) {
             loggedIn = true;
             break;
         }
@@ -27,7 +30,7 @@ TEST(TestUser, LoginFail) {
     users.push_back(aUser);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Mordred", "Pendragon")) {
+        if (user.Login("Mordred", "Pendragon")) {
             loggedIn = true;
             break;
         }
@@ -35,13 +38,15 @@ TEST(TestUser, LoginFail) {
     EXPECT_FALSE(loggedIn==true);
 }
 
+//  Instructor Tests
+
 TEST(TestInstructor, LoginSuccess) {
     Instructor aInstructor("Kiritsugu", "Emiya", true);
     std::vector<User> users;
     users.push_back(aInstructor);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Kiritsugu", "Emiya")) {
+        if (user.Login("Kiritsugu", "Emiya")) {
             loggedIn = true;
             break;
         }
@@ -55,7 +60,7 @@ TEST(TestInstructor, LoginFail) {
     users.push_back(aInstructor);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Kirei", "Kotomine")) {
+        if (user.Login("Kirei", "Kotomine")) {
             loggedIn = true;
             break;
         }
@@ -63,9 +68,16 @@ TEST(TestInstructor, LoginFail) {
     EXPECT_FALSE(loggedIn==true);
 }
 
-TEST(TestInstructor, ?) {
-
+TEST(TestInstructor, AddAndGetQuiz) {
+    Instructor aInstructor("Kiritsugu", "Emiya", true);
+    Quiz aQuiz;
+    aInstructor.AddQuiz(aQuiz);
+    std::vector<Quiz> quizzes = aInstructor.GetQuizzes();
+    ASSERT_EQ(quizzes.size(), 1);
+    EXPECT_TRUE(quizzes.at(0) == aQuiz);
 }
+
+//  Student Tests
 
 TEST(TestStudent, LoginSuccess) {
     Student aStudent("Shirou", "Emiya", true);
@@ -73,7 +85,7 @@ TEST(TestStudent, LoginSuccess) {
     users.push_back(aStudent);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Shirou", "Emiya")) {
+        if (user.Login("Shirou", "Emiya")) {
             loggedIn = true;
             break;
         }
@@ -87,7 +99,7 @@ TEST(TestStudent, LoginFail) {
     users.push_back(aStudent);
     bool loggedIn = false;
     for (auto& user: users) {
-        if (user->Login("Rin", "Tohsaka")) {
+        if (user.Login("Rin", "Tohsaka")) {
             loggedIn = true;
             break;
         }
@@ -95,14 +107,24 @@ TEST(TestStudent, LoginFail) {
     EXPECT_FALSE(loggedIn==true);
 }
 
-TEST(TestStudent, ?) {
-
+TEST(TestStudent, JoinClass) {
+    Student aStudent("Shirou", "Emiya", true);
+    EXPECT_FALSE(aStudent.HasInstructor());
+    aStudent.JoinClass("Pendragon");
+    EXPECT_TRUE(aStudent.HasInstructor()); 
 }
 
-TEST(TestStudent, ?) {
-
+TEST(TestStudent, AddQuizzes) {
+    Student aStudent("Shirou", "Emiya", true);
+    Quiz quiz1, quiz2;
+    std::vector<Quiz> quizzes = {quiz1, quiz2};
+    aStudent.AddQuizzes(quizzes);
+    ASSERT_EQ(aStudent.ViewAvailableQuizzes().size(), 2);
 }
 
-TEST(TestStudent, ?) {
-
+TEST(TestStudent, AddTakenQuiz) {
+    Student aStudent("Shirou", "Emiya", true);
+    QuizSession takenQuiz;
+    aStudent.AddTakenQuiz(takenQuiz);
+    ASSERT_EQ(aStudent.ViewCompletedQuizzes().size(), 1);
 }

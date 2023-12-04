@@ -9,7 +9,8 @@ class Instructor : public User {
     private:
         std::vector<Quiz> quizzes;
     public:
-        std::vector<Quiz> ViewQuizzes();
+        void AddQuiz(const Quiz& quiz);
+        std::vector<Quiz> GetQuizzes();
 }
 
 #endif

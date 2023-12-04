@@ -16,6 +16,9 @@ class Student : public User {
         std::vector<QuizSession> takenQuizzes;
     public:
         void JoinClass(std::string instructor);
+        bool HasInstructor() const;
+        void AddQuizzes(const std::vector<Quiz>& quiz);
+        void AddTakenQuiz(const QuizSession& completedQuizSession);
         std::vector<Quiz> ViewAvailableQuizzes();
         std::vector<QuizSession> ViewCompletedQuizzes();
 }
