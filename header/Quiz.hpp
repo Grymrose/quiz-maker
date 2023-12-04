@@ -8,8 +8,8 @@
 class Quiz{
 private:
     int QuizID;
-    string Title;
-    vector <Question> Questions;
+    std::string Title;
+    std::vector<Question> Questions;
     Instructor* instructor;
     bool Availability;
     int Attempts;
@@ -25,3 +25,5 @@ public:
     void AddQuestion(Question question);
     
 }
+
+#endif
