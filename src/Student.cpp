@@ -11,7 +11,7 @@ bool Student::HasInstructor() const {
 }
 
 //add quizzes that instrutor permits
-void Student::AddQuizzes(const std::vector<Quiz>& quiz) {
+void Student::AddQuizzes(const std::vector<Quiz>& inputQuizzes) {
     if (HasInstructor()) {
         quizzesToDo.insert(quizzesToDo.end(), inputQuizzes.begin(), inputQuizzes.end());
     }
