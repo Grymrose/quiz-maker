@@ -15,6 +15,12 @@ SET(SOURCES
 	src/QuestionPool.cpp
 )
 
+SET(SOURCES_USERS
+	src/User.cpp
+	src/Instructor.cpp
+	src/Student.cpp
+)
+
 ADD_EXECUTABLE(TestProgram
 	${SOURCES}
 	test/TestQuestionProgram.cpp
@@ -39,6 +45,15 @@ ADD_EXECUTABLE(RunQuestionPoolTests
 )
 
 TARGET_COMPILE_OPTIONS(RunQuestionPoolTests
+	PRIVATE -g
+)
+
+ADD_EXECUTABLE(RunUserTests
+	${SOURCES_USERS}
+	test/TestUser.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunUserTests
 	PRIVATE -g
 )
 
