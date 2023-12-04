@@ -6,7 +6,8 @@
 
 class QuizSession{
     private:
-        Quiz& quiz;
+        //Quiz& quiz;
+        // This variable needs to be fixed!
         std::vector<std::string> answers;
         int score;
         int timeElapsed;
