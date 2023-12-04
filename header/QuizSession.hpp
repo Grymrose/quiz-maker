@@ -5,11 +5,11 @@
 class QuizSession{
     private:
         Quiz& quiz;
-        std::vector<String> answers;
+        std::vector<std::string> answers;
         int score;
         int timeElapsed;
     public:
-        void SubmitAnswers(std::vector<String> answers);
+        void SubmitAnswers(std::vector<std::string> answers);
         int GetScore();
         int GetTimeElapsed();
 };
