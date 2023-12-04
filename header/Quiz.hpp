@@ -1,6 +1,7 @@
 #ifndef __QUIZ_HEADER__
 #define __QUIZ_HEADER__
 #include "../header/Question.hpp"
+#include "../header/Instructor.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
