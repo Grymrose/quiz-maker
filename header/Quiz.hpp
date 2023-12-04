@@ -9,7 +9,7 @@ class Quiz{
 private:
     int QuizID;
     std::string Title;
-    std::vector<Question> Questions;
+    std::vector<std::shared_ptr<Question>> Questions;
     Instructor* instructor;
     bool Availability;
     int Attempts;
