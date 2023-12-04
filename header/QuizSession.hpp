@@ -4,13 +4,12 @@
 
 class QuizSession{
     private:
-    Quiz Quiz;
-    vector <String> Answers;
-    int Score;
-    int TimeElapsed;
-
+        Quiz& quiz;
+        std::vector<String> answers;
+        int score;
+        int timeElapsed;
     public:
-    void vector<String> answers SubmitAnswer;
-    int GetScore();
-    int GetTimeElapsed();
-}
+        void SubmitAnswers(std::vector<String> answers);
+        int GetScore();
+        int GetTimeElapsed();
+};
