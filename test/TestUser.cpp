@@ -79,7 +79,7 @@ TEST(TestInstructor, AddAndGetQuiz) {
 //  Student Tests
 
 TEST(TestStudent, LoginSuccess) {
-    Student aStudent("Shirou", "Emiya", true);
+    Student aStudent("Shirou", "Emiya", false);
     std::vector<User> users;
     users.push_back(aStudent);
     bool loggedIn = false;
@@ -93,7 +93,7 @@ TEST(TestStudent, LoginSuccess) {
 }
 
 TEST(TestStudent, LoginFail) {
-    Student aStudent("Shirou", "Emiya", true);
+    Student aStudent("Shirou", "Emiya", false);
     std::vector<User> users;
     users.push_back(aStudent);
     bool loggedIn = false;
@@ -107,14 +107,15 @@ TEST(TestStudent, LoginFail) {
 }
 
 TEST(TestStudent, JoinClass) {
-    Student aStudent("Shirou", "Emiya", true);
+    Student aStudent("Shirou", "Emiya", false);
     EXPECT_FALSE(aStudent.HasInstructor());
     aStudent.JoinClass("Pendragon");
     EXPECT_TRUE(aStudent.HasInstructor()); 
 }
 
 TEST(TestStudent, AddQuizzes) {
-    Student aStudent("Shirou", "Emiya", true);
+    Student aStudent("Shirou", "Emiya", false);
+    aStudent.JoinClass("Pendragon");
     Quiz quiz1, quiz2;
     std::vector<Quiz> quizzes = {quiz1, quiz2};
     aStudent.AddQuizzes(quizzes);
@@ -122,7 +123,7 @@ TEST(TestStudent, AddQuizzes) {
 }
 
 TEST(TestStudent, AddTakenQuiz) {
-    Student aStudent("Shirou", "Emiya", true);
+    Student aStudent("Shirou", "Emiya", false);
     QuizSession takenQuiz;
     aStudent.AddTakenQuiz(takenQuiz);
     ASSERT_EQ(aStudent.ViewCompletedQuizzes().size(), 1);
