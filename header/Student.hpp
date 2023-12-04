@@ -1,21 +1,28 @@
+#ifndef __STUDENT_HEADER__
+#define __STUDENT_HEADER__
+
 #include <iostream>
 #include <string>
 #include <vector>
+#include "../header/User.hpp"
 #include "../header/Quiz.hpp"
 #include "../header/QuizSession.hpp"
 
 
-class Student{
+class Student : public User {
     private:
-    std::string InstructorName;
-    vector <Quizzes> QuizzesToDo; //quizzes or quiz
-    vector <QuizSession> TakenQuizzes;
-
+        std::string instructorName;
+        std::vector<Quiz> quizzesToDo;
+        std::vector<QuizSession> takenQuizzes;
     public:
-    void JoinClass(std::string instructor);
-    Student();
-    ~Student();
-    vector <Quiz> ViewAvailableQuizzes();
-    vector <QuizSession> ViewCompletedQuizzes();
+        Student(std::string username, std::string password, bool isInstructor)
+        : User(username, password, isInstructor) {}
+        void JoinClass(std::string instructor);
+        bool HasInstructor() const;
+        void AddQuizzes(const std::vector<Quiz>& quiz);
+        void AddTakenQuiz(const QuizSession& completedQuizSession);
+        std::vector<Quiz> ViewAvailableQuizzes();
+        std::vector<QuizSession> ViewCompletedQuizzes();
+};
 
-}
+#endif

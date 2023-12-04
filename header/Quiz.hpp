@@ -1,16 +1,16 @@
 #ifndef __QUIZ_HEADER__
 #define __QUIZ_HEADER__
-
+#include "../header/Question.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 class Quiz{
 private:
     int QuizID;
-    string Title;
-    vector <Question> Questions;
-    Instructor* instructor;
+    std::string Title;
+    std::vector<std::shared_ptr<Question>> Questions;
     bool Availability;
     int Attempts;
 
@@ -22,6 +22,8 @@ public:
 
     void setAttempts(int attempts);
                      
-    void AddQuestion(Question question);
+    void AddQuestion(std::shared_ptr<Question> question);
     
-}
+};
+
+#endif
