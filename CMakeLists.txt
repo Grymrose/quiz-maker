@@ -65,4 +65,4 @@ TARGET_COMPILE_OPTIONS(RunUserTests
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/test/googletest)
 target_link_libraries(RunQuestionTests gtest gtest_main)
 target_link_libraries(RunQuestionPoolTests gtest gtest_main)
-
+target_link_libraries(RunUserTests gtest gtest_main)
