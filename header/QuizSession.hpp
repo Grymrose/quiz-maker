@@ -5,7 +5,6 @@
 class QuizSession{
     private:
     Quiz Quiz;
-    Student Student;
     vector <String> Answers;
     int Score;
     int TimeElapsed;

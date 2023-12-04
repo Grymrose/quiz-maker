@@ -3,7 +3,6 @@
 Quiz::Quiz() {
     QuizID = 0;
     Title = "";
-    instructor = nullptr;
     Availability = false;
     Attempts = 1; 
 }
