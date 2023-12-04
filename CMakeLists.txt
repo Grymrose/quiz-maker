@@ -10,18 +10,15 @@ INCLUDE_DIRECTORIES(
 )
 
 SET(SOURCES
+	src/User.cpp
+	src/Instructor.cpp
+	src/Student.cpp
 	src/Question.cpp
 	src/QuestionOutput.cpp
 	src/QuestionMCQ.cpp
 	src/QuestionFRQ.cpp
 	src/QuestionTF.cpp
 	src/QuestionPool.cpp
-)
-
-SET(SOURCES_USERS
-	src/User.cpp
-	src/Instructor.cpp
-	src/Student.cpp
 )
 
 ADD_EXECUTABLE(TestProgram
@@ -52,7 +49,7 @@ TARGET_COMPILE_OPTIONS(RunQuestionPoolTests
 )
 
 ADD_EXECUTABLE(RunUserTests
-	${SOURCES_USERS}
+	${SOURCES}
 	test/TestUser.cpp
 )
 
