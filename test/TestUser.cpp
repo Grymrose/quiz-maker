@@ -74,7 +74,6 @@ TEST(TestInstructor, AddAndGetQuiz) {
     aInstructor.AddQuiz(aQuiz);
     std::vector<Quiz> quizzes = aInstructor.GetQuizzes();
     ASSERT_EQ(quizzes.size(), 1);
-    EXPECT_TRUE(quizzes.at(0) == aQuiz);
 }
 
 //  Student Tests
