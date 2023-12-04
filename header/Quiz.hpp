@@ -24,7 +24,7 @@ public:
 
     void setAttempts(int attempts);
                      
-    void AddQuestion(Question question);
+    void AddQuestion(std::shared_ptr<Question> question);
     
 };
 
