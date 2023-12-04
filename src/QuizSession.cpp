@@ -1,3 +1,5 @@
+#include "../header/QuizSession.hpp"
+
 void SubmitAnswers(std::vector<std::string> inputAnswers) {
     answers.insert(answers.end(), inputAnswers.begin(), inputAnswers.end());
 }

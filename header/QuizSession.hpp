@@ -1,3 +1,5 @@
+#ifndef __QUIZ_SESSION_HEADER__
+#define __QUIZ_SESSION_HEADER__
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,3 +15,5 @@ class QuizSession{
         int GetScore();
         int GetTimeElapsed();
 };
+
+#endif
