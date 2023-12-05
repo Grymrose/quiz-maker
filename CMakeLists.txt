@@ -68,6 +68,15 @@ TARGET_COMPILE_OPTIONS(RunQuizTests
 	PRIVATE -g
 )
 
+ADD_EXECUTABLE(RunQuizSessionTests
+	${SOURCES}
+	test/TestQuizSession.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuizSessionTests
+	PRIVATE -g
+)
+
 #SET_TARGET_PROPERTIES(RunAllTests
 #	PROPERTIES
 #	RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
@@ -78,3 +87,4 @@ target_link_libraries(RunQuestionTests gtest gtest_main)
 target_link_libraries(RunQuestionPoolTests gtest gtest_main)
 target_link_libraries(RunUserTests gtest gtest_main)
 target_link_libraries(RunQuizTests gtest gtest_main)
+target_link_libraries(RunQuizSessionTests gtest gtest_main)
