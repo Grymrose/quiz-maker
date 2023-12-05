@@ -1,13 +1,26 @@
 #include "../header/QuizSession.hpp"
 
-void QuizSession::SubmitAnswers(std::vector<std::string> inputAnswers) {
-    answers.insert(answers.end(), inputAnswers.begin(), inputAnswers.end());
+// Constructor implementation
+QuizSession::QuizSession(std::shared_ptr<Quiz> quiz) : quiz(quiz), score(0), timeElapsed(0) {}
+
+// Submit student answers to the quiz
+void QuizSession::SubmitAnswers(const std::vector<std::string>& inputAnswers) {
+    for (size_t i = 0; i < inputAnswers.size(); ++i) {
+        score += quiz->GetQuestions()[i]->ScoreQuestion(inputAnswers[i]);
+    }
 }
 
-int QuizSession::GetScore() {
-    return 1;
+// Get the score achieved in the quiz
+int QuizSession::GetScore() const {
+    return score;
 }
 
-int QuizSession::GetTimeElapsed() {
-    return 1;
+// Get the time elapsed during the quiz
+int QuizSession::GetTimeElapsed() const {
+    return timeElapsed;
+}
+
+// Set the time elapsed during the quiz
+void QuizSession::SetTimeElapsed(int time) {
+    timeElapsed = time;
 }
