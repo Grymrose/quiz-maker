@@ -8,12 +8,10 @@
 // Quiz Tests
 
 TEST(TestQuiz, AddQuestion) {
-    Quiz aQuiz(0, "Test Quiz");
-    std::shared_ptr<Question> question1 = std::make_shared<Question>(1, 10, "What is the capital of France?");
-    std::shared_ptr<Question> question2 = std::make_shared<Question>(2, 5, "Who wrote Hamlet?");
-    aQuiz.AddQuestion(question1);
-    aQuiz.AddQuestion(question2);
-    ASSERT_EQ(aQuiz.GetQuestions().size(), 2);
+    Quiz aQuiz(1, "Math Quiz");
+    auto mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What is 2 + 2?");
+    aQuiz.AddQuestion(mcqQuestion);
+    ASSERT_EQ(aQuiz.GetQuestions().size(), 1);
 }
 
 TEST(TestQuiz, SetAvailability) {
