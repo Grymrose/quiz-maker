@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 #include "../header/Quiz.hpp"
 #include "../header/Question.hpp"
 #include "../header/QuestionMCQ.hpp"
