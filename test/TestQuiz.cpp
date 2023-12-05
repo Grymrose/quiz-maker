@@ -4,6 +4,9 @@
 #include "gtest/gtest.h"
 #include "../header/Quiz.hpp"
 #include "../header/Question.hpp"
+#include "../header/QuestionMCQ.hpp"
+#include "../header/QuestionTF.hpp"
+#include "../header/QuestionFRQ.hpp"
 
 // Quiz Tests
 
