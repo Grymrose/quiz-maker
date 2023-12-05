@@ -125,7 +125,7 @@ TEST(TestStudent, AddQuizzes) {
 TEST(TestStudent, AddTakenQuiz) {
     Student aStudent("Shirou", "Emiya", false);
     Quiz aQuiz(0);
-    QuizSession takenQuiz(aQuiz);
+    QuizSession takenQuiz(std::make_shared<Quiz>(aQuiz));
     aStudent.AddTakenQuiz(takenQuiz);
     ASSERT_EQ(aStudent.ViewCompletedQuizzes().size(), 1);
 }
