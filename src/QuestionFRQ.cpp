@@ -21,7 +21,7 @@ void QuestionFRQ::EditPossibleAnswer(){
 	PossibleAnswer = QuestionOutput::GetUserInputString("New correct answer: ");
 }
 
-unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
+unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer) override{
 	if(PossibleAnswer == StudentAnswer){
 		return PossiblePoints;
 	}else{

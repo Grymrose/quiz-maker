@@ -8,19 +8,7 @@ void QuizSession::SubmitAnswers(const std::vector<std::string>& inputAnswers) {
     const std::vector<std::shared_ptr<Question>>& questions = quiz->GetQuestions();
 
     for (size_t i = 0; i < questions.size(); ++i) {
-        // Use dynamic casting to determine the type of the question
-        std::shared_ptr<QuestionMCQ> mcqQuestion = std::dynamic_pointer_cast<QuestionMCQ>(questions[i]);
-        std::shared_ptr<QuestionTF> tfQuestion = std::dynamic_pointer_cast<QuestionTF>(questions[i]);
-        std::shared_ptr<QuestionFRQ> frqQuestion = std::dynamic_pointer_cast<QuestionFRQ>(questions[i]);
-
-        // Check the type and score accordingly
-        if (mcqQuestion) {
-            score += mcqQuestion->ScoreQuestion(inputAnswers[i]);
-        } else if (tfQuestion) {
-            score += tfQuestion->ScoreQuestion(inputAnswers[i]);
-        } else if (frqQuestion) {
-            score += frqQuestion->ScoreQuestion(inputAnswers[i]);
-        }
+        score += questions[i]->ScoreQuestion(inputAnswers[i]);
     }
 }
 
