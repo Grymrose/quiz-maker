@@ -70,7 +70,7 @@ TEST(TestInstructor, LoginFail) {
 
 TEST(TestInstructor, AddAndGetQuiz) {
     Instructor aInstructor("Kiritsugu", "Emiya", true);
-    Quiz aQuiz;
+    Quiz aQuiz(0);
     aInstructor.AddQuiz(aQuiz);
     std::vector<Quiz> quizzes = aInstructor.GetQuizzes();
     ASSERT_EQ(quizzes.size(), 1);
@@ -116,7 +116,7 @@ TEST(TestStudent, JoinClass) {
 TEST(TestStudent, AddQuizzes) {
     Student aStudent("Shirou", "Emiya", false);
     aStudent.JoinClass("Pendragon");
-    Quiz quiz1, quiz2;
+    Quiz quiz1(1), quiz2(2);
     std::vector<Quiz> quizzes = {quiz1, quiz2};
     aStudent.AddQuizzes(quizzes);
     ASSERT_EQ(aStudent.ViewAvailableQuizzes().size(), 2);
