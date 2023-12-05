@@ -7,6 +7,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 INCLUDE_DIRECTORIES(
 	header
 	test/googletest/googletest/include
+	test/googletest/googlemock/include
 )
 
 SET(SOURCES
