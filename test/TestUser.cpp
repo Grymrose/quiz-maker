@@ -124,7 +124,8 @@ TEST(TestStudent, AddQuizzes) {
 
 TEST(TestStudent, AddTakenQuiz) {
     Student aStudent("Shirou", "Emiya", false);
-    QuizSession takenQuiz;
+    Quiz aQuiz(0);
+    QuizSession takenQuiz(aQuiz);
     aStudent.AddTakenQuiz(takenQuiz);
     ASSERT_EQ(aStudent.ViewCompletedQuizzes().size(), 1);
 }
