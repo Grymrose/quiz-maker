@@ -5,12 +5,10 @@ QuizSession::QuizSession(std::shared_ptr<Quiz> quiz) : quiz(quiz), score(0), tim
 
 // Submit student answers to the quiz
 void QuizSession::SubmitAnswers(const std::vector<std::string>& inputAnswers) {
-    for (size_t i = 0; i < inputAnswers.size(); ++i) {
-        const std::vector<std::shared_ptr<Question>>& questions = quiz->GetQuestions();
+    const std::vector<std::shared_ptr<Question>>& questions = quiz->GetQuestions();
 
-        if (i < questions.size()) {
-            score += questions[i]->ScoreQuestion(inputAnswers[i]);
-        }
+    for (size_t i = 0; i < questions.size(); ++i) {
+        score += questions[i]->ScoreQuestion(inputAnswers[i]);
     }
 }
 
