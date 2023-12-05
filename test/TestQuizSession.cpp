@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "gtest/gtest.h"
-#include "gmock/gmock.h"
 #include "../header/Quiz.hpp"
 #include "../header/Question.hpp"
 #include "../header/QuestionMCQ.hpp"
@@ -10,72 +9,84 @@
 #include "../header/QuestionFRQ.hpp"
 #include "../header/QuizSession.hpp"
 
-// Helper function to simulate user input for correctness
-bool GetUserInputCorrectness() {
-    std::string input = QuestionOutput::GetUserInputString("Correctness state (1 for true, 0 for false, \"SKIP\" to keep original): ");
-    while (true) {
-        if (input == "1") {
-            return true;
-        } else if (input == "0") {
-            return false;
-        } else if (input != "SKIP" && input != "skip") {
-            std::cout << "Bad entry. Only use 0, 1, or \"SKIP\"!" << std::endl;
-        }
-        input = QuestionOutput::GetUserInputString("Correctness state (1 for true, 0 for false, \"SKIP\" to keep original): ");
-    }
-    return false;
+TEST(TestQuizSession, TestConstructor) {
+    // Create a dummy quiz for the session
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
+
+    // Check if the QuizSession constructor works without errors
+    EXPECT_NO_THROW(QuizSession quizSession(dummyQuiz));
 }
 
-// Test QuizSession for multiple-choice question (MCQ)
-TEST(TestQuizSession, SubmitAnswersMCQ) {
-    // Create a quiz with an MCQ
-    Quiz aQuiz(1, "Science Quiz");
-    auto mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What is the capital of France?");
-    mcqQuestion->AddPossibleAnswer("Paris");
-    mcqQuestion->AddPossibleAnswer("London");
-    mcqQuestion->AddPossibleAnswer("Berlin");
-    mcqQuestion->AddPossibleAnswer("Madrid");
-    mcqQuestion->EditPossibleAnswer();
-    mcqQuestion->AddPossibleAnswer("Rome");
-    aQuiz.AddQuestion(mcqQuestion);
+TEST(TestQuizSession, TestSubmitAnswers) {
+    // Create a dummy quiz for the session
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
-    std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(aQuiz);
-    QuizSession quizSession(quizPtr);
+    // Add MCQ, TF, and FRQ questions to the quiz
+    std::shared_ptr<QuestionMCQ> mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What's 2 + 2?");
+    mcqQuestion->AddPossibleAnswer("3");
+    mcqQuestion->AddPossibleAnswer("4");
+    mcqQuestion->AddPossibleAnswer("5");
+    dummyQuiz->AddQuestion(mcqQuestion);
 
-    // Simulate user input for MCQ correctness
-    bool mcqCorrectness = GetUserInputCorrectness();
-    mcqQuestion->GetPossibleAnswers()->Correctness = mcqCorrectness;
+    std::shared_ptr<QuestionTF> tfQuestion = std::make_shared<QuestionTF>(2, 5, "Is the sky blue?");
+    tfQuestion->AddPossibleAnswer("True");
+    tfQuestion->AddPossibleAnswer("False");
+    dummyQuiz->AddQuestion(tfQuestion);
 
-    // The student answers "Paris"
-    std::vector<std::string> answers = {"Paris"};
-    quizSession.SubmitAnswers(answers);
+    std::shared_ptr<QuestionFRQ> frqQuestion = std::make_shared<QuestionFRQ>(3, 15, "Explain Newton's second law.");
+    dummyQuiz->AddQuestion(frqQuestion);
 
-    // The expected score is 10 if the MCQ answer is correct
-    EXPECT_EQ(quizSession.GetScore(), mcqCorrectness ? 10 : 0);
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(dummyQuiz);
+
+    // Submit answers for MCQ, TF, and FRQ questions
+    std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
+
+    // Check if the score is calculated correctly
+    EXPECT_EQ(quizSession.GetScore(), 30);
 }
 
-// Test QuizSession for free-response question (FRQ)
-TEST(TestQuizSession, SubmitAnswersFRQ) {
-    // Create a quiz with an FRQ
-    Quiz aQuiz(1, "Math Quiz");
-    auto frqQuestion = std::make_shared<QuestionFRQ>(1, 15, "Solve for x: 2x + 5 = 15");
-    frqQuestion->AddPossibleAnswer("5");
-    aQuiz.AddQuestion(frqQuestion);
+TEST(TestQuizSession, TestGetScore) {
+    // Create a dummy quiz for the session
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
-    std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(aQuiz);
-    QuizSession quizSession(quizPtr);
+    // Add an MCQ question to the quiz
+    std::shared_ptr<QuestionMCQ> mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What's 2 + 2?");
+    mcqQuestion->AddPossibleAnswer("3");
+    mcqQuestion->AddPossibleAnswer("4");
+    mcqQuestion->AddPossibleAnswer("5");
+    dummyQuiz->AddQuestion(mcqQuestion);
 
-    // The student answers "5"
-    std::vector<std::string> answers = {"5"};
-    quizSession.SubmitAnswers(answers);
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(dummyQuiz);
 
-    // The expected score is 15 if the FRQ answer is correct
-    EXPECT_EQ(quizSession.GetScore(), 15);
+    // Submit incorrect answer for MCQ question
+    std::vector<std::string> incorrectAnswer = {"3"};
+    quizSession.SubmitAnswers(incorrectAnswer);
+
+    // Check if the score is 0 for incorrect answer
+    EXPECT_EQ(quizSession.GetScore(), 0);
+
+    // Submit correct answer for MCQ question
+    std::vector<std::string> correctAnswer = {"4"};
+    quizSession.SubmitAnswers(correctAnswer);
+
+    // Check if the score is calculated correctly
+    EXPECT_EQ(quizSession.GetScore(), 10);
 }
 
-// Add more tests as needed for different question types or scenarios
+TEST(TestQuizSession, TestGetTimeElapsed) {
+    // Create a dummy quiz for the session
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(dummyQuiz);
+
+    // Set time elapsed for the quiz session
+    quizSession.SetTimeElapsed(120);
+
+    // Check if the time elapsed is retrieved correctly
+    EXPECT_EQ(quizSession.GetTimeElapsed(), 120);
 }
+
