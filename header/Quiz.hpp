@@ -1,29 +1,36 @@
 #ifndef __QUIZ_HEADER__
 #define __QUIZ_HEADER__
-#include "../header/Question.hpp"
-#include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
+#include "../header/Question.hpp"
 
-class Quiz{
-private:
-    int QuizID;
-    std::string Title;
-    std::vector<std::shared_ptr<Question>> Questions;
-    bool Availability;
-    int Attempts;
+class Quiz {
+    private:
+        int quizID;
+        std::string title;
+        std::vector<std::shared_ptr<Question>> questions;
+        bool availability;
+        int attempts;
+    public:
+        // Constructor with default values for title, availability, and attempts
+        Quiz(int quizID, const std::string& title = "Untitled", bool availability = true, int attempts = -1);
 
-public:
-    Quiz();
-    ~Quiz();
-    
-    void setAvailability(bool availability);
+        // Setter methods
+        void setAvailability(bool availability);
+        void setAttempts(int attempts);
 
-    void setAttempts(int attempts);
-                     
-    void AddQuestion(std::shared_ptr<Question> question);
-    
+        // Add a question to the quiz
+        void AddQuestion(std::shared_ptr<Question> question);
+
+        // Getter method for questions
+        const std::vector<std::shared_ptr<Question>>& GetQuestions() const;
+
+        // Getter methods for other properties
+        int GetQuizID() const;
+        const std::string& GetTitle() const;
+        bool IsAvailable() const;
+        int GetAttempts() const;
 };
 
 #endif
