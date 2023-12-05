@@ -24,7 +24,7 @@ TEST(TestQuizSession, SubmitAnswers) {
     QuizSession quizSession(quizPtr);
 
     // Submit answers
-    std::vector<std::string> answers = {"Paris", "True"};
+    std::vector<std::string> answers = {"PARIS", "TRUE"};  // Ensure uppercase for MCQ
     quizSession.SubmitAnswers(answers);
 
     // Check if the score is calculated correctly
