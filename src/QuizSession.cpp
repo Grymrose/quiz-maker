@@ -8,7 +8,8 @@ void QuizSession::SubmitAnswers(const std::vector<std::string>& inputAnswers) {
     const std::vector<std::shared_ptr<Question>>& questions = quiz->GetQuestions();
 
     for (size_t i = 0; i < questions.size(); ++i) {
-        score += questions[i]->ScoreQuestion(inputAnswers[i]);
+        std::shared_ptr<Question> currentQuestion = questions[i];
+        score += currentQuestion->ScoreQuestion(inputAnswers[i]);
     }
 }
 
