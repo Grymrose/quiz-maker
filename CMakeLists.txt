@@ -59,6 +59,15 @@ TARGET_COMPILE_OPTIONS(RunUserTests
 	PRIVATE -g
 )
 
+ADD_EXECUTABLE(RunQuizTests
+	${SOURCES}
+	test/TestQuiz.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuizTests
+	PRIVATE -g
+)
+
 #SET_TARGET_PROPERTIES(RunAllTests
 #	PROPERTIES
 #	RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
@@ -68,3 +77,4 @@ ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/test/googletest)
 target_link_libraries(RunQuestionTests gtest gtest_main)
 target_link_libraries(RunQuestionPoolTests gtest gtest_main)
 target_link_libraries(RunUserTests gtest gtest_main)
+target_link_libraries(RunQuizTests gtest gtest_main)
