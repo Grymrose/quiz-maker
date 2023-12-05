@@ -21,12 +21,14 @@ void QuestionFRQ::EditPossibleAnswer(){
 	PossibleAnswer = QuestionOutput::GetUserInputString("New correct answer: ");
 }
 
-unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
-	if(PossibleAnswer == StudentAnswer){
-		return PossiblePoints;
-	}else{
-		return 0;
-	}
+unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer) {
+    // Case-insensitive comparison
+    std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
+    std::string ExpectedAnswerUpper = PossibleAnswer;
+    std::transform(ExpectedAnswerUpper.begin(), ExpectedAnswerUpper.end(), ExpectedAnswerUpper.begin(), ::toupper);
+
+    // Compare student's answer with the expected answer
+    return (StudentAnswer == ExpectedAnswerUpper) ? PossiblePoints : 0;
 }
 
 void QuestionFRQ::PrintQuestion() const {
