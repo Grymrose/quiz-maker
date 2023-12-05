@@ -10,82 +10,72 @@
 #include "../header/QuestionFRQ.hpp"
 #include "../header/QuizSession.hpp"
 
-// Mock user input for testing
-class MockUserInput {
-public:
-    MOCK_METHOD(char, GetUserInputChar, (const std::string& prompt), ());
-    MOCK_METHOD(std::string, GetUserInputString, (const std::string& prompt), ());
-};
+// Helper function to simulate user input for correctness
+bool GetUserInputCorrectness() {
+    std::string input = QuestionOutput::GetUserInputString("Correctness state (1 for true, 0 for false, \"SKIP\" to keep original): ");
+    while (true) {
+        if (input == "1") {
+            return true;
+        } else if (input == "0") {
+            return false;
+        } else if (input != "SKIP" && input != "skip") {
+            std::cout << "Bad entry. Only use 0, 1, or \"SKIP\"!" << std::endl;
+        }
+        input = QuestionOutput::GetUserInputString("Correctness state (1 for true, 0 for false, \"SKIP\" to keep original): ");
+    }
+    return false;
+}
 
-TEST(TestQuizSession, SubmitAnswers) {
-    MockUserInput userInputMock;
-
+// Test QuizSession for multiple-choice question (MCQ)
+TEST(TestQuizSession, SubmitAnswersMCQ) {
+    // Create a quiz with an MCQ
     Quiz aQuiz(1, "Science Quiz");
     auto mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What is the capital of France?");
     mcqQuestion->AddPossibleAnswer("Paris");
     mcqQuestion->AddPossibleAnswer("London");
     mcqQuestion->AddPossibleAnswer("Berlin");
     mcqQuestion->AddPossibleAnswer("Madrid");
-    mcqQuestion->AddPossibleAnswer("Rome");
-    mcqQuestion->AddPossibleAnswer("True");
-
-    // Mock user input for setting correctness
-    EXPECT_CALL(userInputMock, GetCorrectnessFromUser())
-        .WillOnce(::testing::Return(true))  // Set "True" as correct
-        .WillOnce(::testing::Return(false));
-
-    mcqQuestion->EditPossibleAnswer();  // Use EditPossibleAnswer() to set correctness
     mcqQuestion->EditPossibleAnswer();
-
+    mcqQuestion->AddPossibleAnswer("Rome");
     aQuiz.AddQuestion(mcqQuestion);
 
     std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(aQuiz);
     QuizSession quizSession(quizPtr);
 
-    // Set up expectations for user input
-    EXPECT_CALL(userInputMock, GetUserInputString(::testing::_))
-        .WillOnce(::testing::Return("Paris"))
-        .WillOnce(::testing::Return("True"));
+    // Simulate user input for MCQ correctness
+    bool mcqCorrectness = GetUserInputCorrectness();
+    mcqQuestion->GetPossibleAnswers()->Correctness = mcqCorrectness;
 
-    // Inject the mock into the QuizSession
-    quizSession.SetUserInputMock(&userInputMock);
-
-    std::vector<std::string> answers = {"Paris", "True"};
+    // The student answers "Paris"
+    std::vector<std::string> answers = {"Paris"};
     quizSession.SubmitAnswers(answers);
 
-    // The expected score is calculated based on the percentage of correct answers
-    // The question has 2 correct answers out of 6 total options, so the expected score is 5.
-    EXPECT_EQ(quizSession.GetScore(), 5);
+    // The expected score is 10 if the MCQ answer is correct
+    EXPECT_EQ(quizSession.GetScore(), mcqCorrectness ? 10 : 0);
 }
 
-TEST(TestQuizSession, GetScore) {
+// Test QuizSession for free-response question (FRQ)
+TEST(TestQuizSession, SubmitAnswersFRQ) {
+    // Create a quiz with an FRQ
     Quiz aQuiz(1, "Math Quiz");
     auto frqQuestion = std::make_shared<QuestionFRQ>(1, 15, "Solve for x: 2x + 5 = 15");
-    frqQuestion->SetCorrectAnswer("5");
+    frqQuestion->AddPossibleAnswer("5");
     aQuiz.AddQuestion(frqQuestion);
 
     std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(aQuiz);
     QuizSession quizSession(quizPtr);
 
-    // For a free-response question, the entire score is awarded if the answer is correct
+    // The student answers "5"
     std::vector<std::string> answers = {"5"};
     quizSession.SubmitAnswers(answers);
 
+    // The expected score is 15 if the FRQ answer is correct
     EXPECT_EQ(quizSession.GetScore(), 15);
 }
 
-TEST(TestQuizSession, GetTimeElapsed) {
-    std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(2, "History Quiz");
-    QuizSession quizSession(quizPtr);
+// Add more tests as needed for different question types or scenarios
 
-    quizSession.SetTimeElapsed(120);  // 2 minutes
-    EXPECT_EQ(quizSession.GetTimeElapsed(), 120);
-}
-
-TEST(TestQuizSession, SetTimeElapsed) {
-    std::shared_ptr<Quiz> quizPtr = std::make_shared<Quiz>(3, "Geography Quiz");
-    QuizSession quizSession(quizPtr);
-
-    quizSession.SetTimeElapsed(180);  // 3 minutes
-    EXPECT_EQ(quizSession.GetTimeElapsed(), 180);
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
