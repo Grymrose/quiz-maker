@@ -5,6 +5,9 @@
 #include <vector>
 #include <memory>  // Include for shared_ptr
 #include "../header/Quiz.hpp"
+#include "../header/QuestionMCQ.hpp"
+#include "../header/QuestionTF.hpp"
+#include "../header/QuestionFRQ.hpp"
 
 class QuizSession {
 private:
