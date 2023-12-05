@@ -65,35 +65,29 @@ void QuestionMCQ::EditPossibleAnswer(){
 	temp->Correctness = newCorrectness;
 }
 
-unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer) {
-    std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
-    std::string AnswerString = GenerateAnswerString();
+unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
+	std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
+	std::string AnswerString = GenerateAnswerString();
 
-    // Sort and find intersection
-    std::sort(StudentAnswer.begin(), StudentAnswer.end());
-    std::string Intersection;
-    std::set_intersection(AnswerString.begin(), AnswerString.end(), StudentAnswer.begin(), StudentAnswer.end(), std::back_inserter(Intersection));
+	// Sort and find intersection
+	std::sort(StudentAnswer.begin(), StudentAnswer.end());
+	std::string Intersection;
+	std::set_intersection(AnswerString.begin(), AnswerString.end(), StudentAnswer.begin(), StudentAnswer.end(), std::back_inserter(Intersection));
+	unsigned NumberCorrect = Intersection.size();
+	unsigned NumberTotal = 0;
 
-    unsigned NumberCorrect = Intersection.size();
-    unsigned NumberTotal = 0;
+	// Count total number of correct answers
+	PossibleAnswers * Temp = MyPossibleAnswers;
+	while(Temp != nullptr){
+		if(Temp->Correctness){
+			NumberTotal++;
+		}
+		Temp = Temp->Next;
+	}
 
-    // Count total number of correct answers
-    PossibleAnswers* Temp = MyPossibleAnswers;
-    while (Temp != nullptr) {
-        if (Temp->Correctness) {
-            NumberTotal++;
-        }
-        Temp = Temp->Next;
-    }
-
-    // Calculate and return the score
-    if (NumberTotal == 0) {
-        // Avoid division by zero
-        return 0;
-    }
-
-    double Ratio = (NumberCorrect / static_cast<double>(NumberTotal));
-    return static_cast<unsigned>(Ratio * PossiblePoints);
+	// Calculate and return the score
+	double Ratio = (NumberCorrect / static_cast<double>(NumberTotal));
+	return abs(Ratio * PossiblePoints);
 }
 
 std::string QuestionMCQ::GenerateAnswerString(){
