@@ -52,7 +52,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     // Submit answers for MCQ, TF, and FRQ questions
     std::vector<std::string> answers = {"A", "A", "Explanation"};
 
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
+    ASSERT_NO_THROW(quizSession.SubmitAnswers(answers));
 
     // Clean up dynamically allocated memory
     for (Question *question : questions) {
@@ -108,6 +108,9 @@ TEST(TestQuizSession, TestGetScore) {
     // For FRQ question
     std::cout << "For FRQ question, enter an explanation (literally type: \"Explanation\"):" << std::endl;
     frqQuestion->EditPossibleAnswer();
+
+    // Submitting answers
+    quizSession.SubmitAnswers(answers);
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 30);
