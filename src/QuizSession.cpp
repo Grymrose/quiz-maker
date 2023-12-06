@@ -1,14 +1,14 @@
 #include "../header/QuizSession.hpp"
 
 // Constructor implementation
-QuizSession::QuizSession(std::shared_ptr<Quiz> quiz) : quiz(quiz), score(0), timeElapsed(0) {}
+QuizSession::QuizSession(Quiz* quiz) : quiz(quiz), score(0), timeElapsed(0) {}
 
 // Submit student answers to the quiz
 void QuizSession::SubmitAnswers(const std::vector<std::string>& inputAnswers) {
-    const std::vector<std::shared_ptr<Question>>& questions = quiz->GetQuestions();
+    const std::vector<Question*>& questions = quiz->GetQuestions();
 
     for (size_t i = 0; i < questions.size(); ++i) {
-        std::shared_ptr<Question> currentQuestion = questions[i];
+        Question* currentQuestion = questions[i];
         score += currentQuestion->ScoreQuestion(inputAnswers[i]);
     }
 }
