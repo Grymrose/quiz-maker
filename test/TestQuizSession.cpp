@@ -14,24 +14,24 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     Quiz dummyQuiz(1, "Dummy Quiz");
 
     // Add MCQ, TF, and FRQ questions to the quiz
-    std::vector<Question> questions;
+    std::vector<Question *> questions;
 
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
     mcqQuestion.AddPossibleAnswer("3");
     mcqQuestion.AddPossibleAnswer("4");
     mcqQuestion.AddPossibleAnswer("5");
-    questions.push_back(mcqQuestion);
+    questions.push_back(&mcqQuestion);
 
     QuestionTF tfQuestion(2, 5, "Is the sky blue?");
     tfQuestion.AddPossibleAnswer("True");
     tfQuestion.AddPossibleAnswer("False");
-    questions.push_back(tfQuestion);
+    questions.push_back(&tfQuestion);
 
     QuestionFRQ frqQuestion(3, 15, "Explain Newton's second law.");
-    questions.push_back(frqQuestion);
+    questions.push_back(&frqQuestion);
 
     // Add questions to the quiz
-    for (const Question& question : questions) {
+    for (Question *question : questions) {
         dummyQuiz.AddQuestion(question);
     }
 
@@ -44,7 +44,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     std::cout << "Submitting answers:" << std::endl;
 
     // For MCQ question
-    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\:" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
     mcqQuestion.EditPossibleAnswer();
 
     // For TF question
@@ -58,7 +58,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     std::getline(std::cin, frqAnswer);
     answers.push_back(frqAnswer);
 
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers, questions));
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 30);
@@ -69,16 +69,16 @@ TEST(TestQuizSession, TestGetScore) {
     Quiz dummyQuiz(1, "Dummy Quiz");
 
     // Add an MCQ question to the quiz
-    std::vector<Question> questions;
+    std::vector<Question *> questions;
 
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
     mcqQuestion.AddPossibleAnswer("3");
     mcqQuestion.AddPossibleAnswer("4");
     mcqQuestion.AddPossibleAnswer("5");
-    questions.push_back(mcqQuestion);
+    questions.push_back(&mcqQuestion);
 
     // Add questions to the quiz
-    for (const Question& question : questions) {
+    for (Question *question : questions) {
         dummyQuiz.AddQuestion(question);
     }
 
@@ -89,7 +89,7 @@ TEST(TestQuizSession, TestGetScore) {
     std::vector<std::string> incorrectAnswer = {"3"};
 
     std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer, questions));
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
 
     // Check if the score is 0 for an incorrect answer
     EXPECT_EQ(quizSession.GetScore(), 0);
@@ -101,7 +101,7 @@ TEST(TestQuizSession, TestGetScore) {
     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
     mcqQuestion.EditPossibleAnswer();
 
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer, questions));
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 10);
