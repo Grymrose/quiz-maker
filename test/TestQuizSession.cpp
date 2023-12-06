@@ -7,6 +7,7 @@
 #include "../header/QuestionFRQ.hpp"
 #include "../header/QuestionTF.hpp"
 #include "../header/QuestionOutput.hpp"
+#include "../header/QuizSession.hpp"
 
 // QuizSession
 
