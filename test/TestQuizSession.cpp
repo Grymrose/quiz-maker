@@ -16,19 +16,22 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     // Add MCQ, TF, and FRQ questions to the quiz
     std::vector<Question *> questions;
 
-    QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-    mcqQuestion.AddPossibleAnswer("6");
-    mcqQuestion.AddPossibleAnswer("5");
-    mcqQuestion.AddPossibleAnswer("5");
-    questions.push_back(&mcqQuestion);
+    // Create MCQ question
+    QuestionMCQ *mcqQuestion = new QuestionMCQ(1, 10, "What's 2 + 2?");
+    mcqQuestion->AddPossibleAnswer("6");
+    mcqQuestion->AddPossibleAnswer("5");
+    mcqQuestion->AddPossibleAnswer("5");
+    questions.push_back(mcqQuestion);
 
-    QuestionTF tfQuestion(2, 5, "Is the sky blue?");
-    tfQuestion.AddPossibleAnswer("False");
-    tfQuestion.AddPossibleAnswer("False");
-    questions.push_back(&tfQuestion);
+    // Create TF question
+    QuestionTF *tfQuestion = new QuestionTF(2, 5, "Is the sky blue?");
+    tfQuestion->AddPossibleAnswer("False");
+    tfQuestion->AddPossibleAnswer("False");
+    questions.push_back(tfQuestion);
 
-    QuestionFRQ frqQuestion(3, 15, "Explain Newton's second law.");
-    questions.push_back(&frqQuestion);
+    // Create FRQ question
+    QuestionFRQ *frqQuestion = new QuestionFRQ(3, 15, "Explain Newton's second law.");
+    questions.push_back(frqQuestion);
 
     // Add questions to the quiz
     for (Question *question : questions) {
@@ -45,11 +48,11 @@ TEST(TestQuizSession, TestSubmitAnswers) {
 
     // For MCQ question
     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
-    mcqQuestion.EditPossibleAnswer();
+    mcqQuestion->EditPossibleAnswer();
 
     // For TF question
     std::cout << "For TF question, change \"A\" prompt to \"True\" and set to \"true\":" << std::endl;
-    tfQuestion.EditPossibleAnswer();
+    tfQuestion->EditPossibleAnswer();
 
     // For FRQ question
     std::cout << "For FRQ question, enter an explanation (literally type: \"Explanation\"):" << std::endl;
@@ -62,6 +65,11 @@ TEST(TestQuizSession, TestSubmitAnswers) {
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 30);
+
+    // Clean up dynamically allocated memory
+    for (Question *question : questions) {
+        delete question;
+    }
 }
 
 TEST(TestQuizSession, TestGetScore) {
@@ -71,11 +79,12 @@ TEST(TestQuizSession, TestGetScore) {
     // Add an MCQ question to the quiz
     std::vector<Question *> questions;
 
-    QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-    mcqQuestion.AddPossibleAnswer("6");
-    mcqQuestion.AddPossibleAnswer("5");
-    mcqQuestion.AddPossibleAnswer("5");
-    questions.push_back(&mcqQuestion);
+    // Create MCQ question
+    QuestionMCQ *mcqQuestion = new QuestionMCQ(1, 10, "What's 2 + 2?");
+    mcqQuestion->AddPossibleAnswer("6");
+    mcqQuestion->AddPossibleAnswer("5");
+    mcqQuestion->AddPossibleAnswer("5");
+    questions.push_back(mcqQuestion);
 
     // Add questions to the quiz
     for (Question *question : questions) {
@@ -99,12 +108,17 @@ TEST(TestQuizSession, TestGetScore) {
 
     std::cout << "Submitting correct answer for MCQ question:" << std::endl;
     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
-    mcqQuestion.EditPossibleAnswer();
+    mcqQuestion->EditPossibleAnswer();
 
     EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 10);
+
+    // Clean up dynamically allocated memory
+    for (Question *question : questions) {
+        delete question;
+    }
 }
 
 TEST(TestQuizSession, TestGetTimeElapsed) {
