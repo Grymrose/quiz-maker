@@ -44,12 +44,22 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     // Submit answers for MCQ, TF, and FRQ questions
     std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
     std::cout << "Submitting answers:" << std::endl;
+    
+    // For MCQ question
     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
     mcqQuestion->EditPossibleAnswer();
+    
+    // For TF question
     std::cout << "For TF question, change \"A\" prompt to \"True\" and set to \"true\":" << std::endl;
     tfQuestion->EditPossibleAnswer();
+    
+    // For FRQ question
     std::cout << "For FRQ question, enter an explanation (literally type: \"Newton's explanation\"):" << std::endl;
-    frqQuestion->EditPossibleAnswer();
+    std::cout << "New correct answer: ";
+    std::string frqAnswer;
+    std::getline(std::cin, frqAnswer);  // Use std::getline to read the entire line
+    answers.push_back(frqAnswer);
+
     EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
 
     // Check if the score is calculated correctly
