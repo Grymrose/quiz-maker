@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "gtest/gtest.h"
 #include "../header/Quiz.hpp"
 #include "../header/Question.hpp"
 #include "../header/QuestionMCQ.hpp"
-#include "../header/QuestionTF.hpp"
 #include "../header/QuestionFRQ.hpp"
-#include "../header/QuizSession.hpp"
+#include "../header/QuestionTF.hpp"
+#include "../header/QuestionOutput.hpp"
+
+// QuizSession
 
 TEST(TestQuizSession, TestConstructor) {
     // Create a dummy quiz for the session
@@ -41,6 +42,13 @@ TEST(TestQuizSession, TestSubmitAnswers) {
 
     // Submit answers for MCQ, TF, and FRQ questions
     std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
+    std::cout << "Submitting answers:" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
+    mcqQuestion->EditPossibleAnswer();
+    std::cout << "For TF question, change \"A\" prompt to \"True\" and set to \"true\":" << std::endl;
+    tfQuestion->EditPossibleAnswer();
+    std::cout << "For FRQ question, enter an explanation (literally type: \"Newton's explanation\"):" << std::endl;
+    frqQuestion->EditPossibleAnswer();
     EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
 
     // Check if the score is calculated correctly
@@ -63,14 +71,18 @@ TEST(TestQuizSession, TestGetScore) {
 
     // Submit incorrect answer for MCQ question
     std::vector<std::string> incorrectAnswer = {"3"};
-    quizSession.SubmitAnswers(incorrectAnswer);
+    std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
 
-    // Check if the score is 0 for incorrect answer
+    // Check if the score is 0 for an incorrect answer
     EXPECT_EQ(quizSession.GetScore(), 0);
 
     // Submit correct answer for MCQ question
     std::vector<std::string> correctAnswer = {"4"};
-    quizSession.SubmitAnswers(correctAnswer);
+    std::cout << "Submitting correct answer for MCQ question:" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
+    mcqQuestion->EditPossibleAnswer();
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
 
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 10);
@@ -89,4 +101,3 @@ TEST(TestQuizSession, TestGetTimeElapsed) {
     // Check if the time elapsed is retrieved correctly
     EXPECT_EQ(quizSession.GetTimeElapsed(), 120);
 }
-
