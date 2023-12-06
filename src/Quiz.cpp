@@ -14,12 +14,12 @@ void Quiz::setAttempts(int attempts) {
 }
 
 // Add a question to the quiz
-void Quiz::AddQuestion(std::shared_ptr<Question> question) {
+void Quiz::AddQuestion(Question* question) {
     questions.push_back(question);
 }
 
 // Getter method for questions
-const std::vector<std::shared_ptr<Question>>& Quiz::GetQuestions() const {
+const std::vector<Question*>& Quiz::GetQuestions() const {
     return questions;
 }
 

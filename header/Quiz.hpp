@@ -2,14 +2,13 @@
 #define __QUIZ_HEADER__
 #include <string>
 #include <vector>
-#include <memory>
 #include "../header/Question.hpp"
 
 class Quiz {
     private:
         int quizID;
         std::string title;
-        std::vector<std::shared_ptr<Question>> questions;
+        std::vector<Question*> questions;
         bool availability;
         int attempts;
     public:
@@ -21,10 +20,10 @@ class Quiz {
         void setAttempts(int attempts);
 
         // Add a question to the quiz
-        void AddQuestion(std::shared_ptr<Question> question);
+        void AddQuestion(Question* question);
 
         // Getter method for questions
-        const std::vector<std::shared_ptr<Question>>& GetQuestions() const;
+        const std::vector<Question*>& GetQuestions() const;
 
         // Getter methods for other properties
         int GetQuizID() const;

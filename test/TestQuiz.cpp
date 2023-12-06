@@ -12,7 +12,7 @@
 
 TEST(TestQuiz, AddQuestion) {
     Quiz aQuiz(1, "Math Quiz");
-    auto mcqQuestion = std::make_shared<QuestionMCQ>(1, 10, "What is 2 + 2?");
+    auto mcqQuestion = new QuestionMCQ(1, 10, "What is 2 + 2?");
     aQuiz.AddQuestion(mcqQuestion);
     ASSERT_EQ(aQuiz.GetQuestions().size(), 1);
 }
