@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "gtest/gtest.h"
 #include "../header/Quiz.hpp"
 #include "../header/Question.hpp"
@@ -11,32 +12,39 @@
 
 TEST(TestQuizSession, TestSubmitAnswers) {
     // Create a dummy quiz for the session
-    Quiz dummyQuiz(1, "Dummy Quiz");
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
     // Add MCQ, TF, and FRQ questions to the quiz
+    std::vector<Question *> questions;
+    
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
     mcqQuestion.AddPossibleAnswer("3");
     mcqQuestion.AddPossibleAnswer("4");
     mcqQuestion.AddPossibleAnswer("5");
-    dummyQuiz.AddQuestion(&mcqQuestion);
+    questions.push_back(&mcqQuestion);
 
     QuestionTF tfQuestion(2, 5, "Is the sky blue?");
     tfQuestion.AddPossibleAnswer("True");
     tfQuestion.AddPossibleAnswer("False");
-    dummyQuiz.AddQuestion(&tfQuestion);
+    questions.push_back(&tfQuestion);
 
     QuestionFRQ frqQuestion(3, 15, "Explain Newton's second law.");
-    dummyQuiz.AddQuestion(&frqQuestion);
+    questions.push_back(&frqQuestion);
+
+    // Add questions to the quiz
+    for (Question *question : questions) {
+        dummyQuiz->AddQuestion(question);
+    }
 
     // Create a QuizSession with the dummy quiz
-    QuizSession quizSession(&dummyQuiz);
+    QuizSession quizSession(dummyQuiz);
 
     // Submit answers for MCQ, TF, and FRQ questions
     std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
     std::cout << "Submitting answers:" << std::endl;
 
     // For MCQ question
-    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\:" << std::endl;
     mcqQuestion.EditPossibleAnswer();
 
     // For TF question
@@ -58,17 +66,24 @@ TEST(TestQuizSession, TestSubmitAnswers) {
 
 TEST(TestQuizSession, TestGetScore) {
     // Create a dummy quiz for the session
-    Quiz dummyQuiz(1, "Dummy Quiz");
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
     // Add an MCQ question to the quiz
+    std::vector<Question *> questions;
+
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
     mcqQuestion.AddPossibleAnswer("3");
     mcqQuestion.AddPossibleAnswer("4");
     mcqQuestion.AddPossibleAnswer("5");
-    dummyQuiz.AddQuestion(&mcqQuestion);
+    questions.push_back(&mcqQuestion);
+
+    // Add questions to the quiz
+    for (Question *question : questions) {
+        dummyQuiz->AddQuestion(question);
+    }
 
     // Create a QuizSession with the dummy quiz
-    QuizSession quizSession(&dummyQuiz);
+    QuizSession quizSession(dummyQuiz);
 
     // Submit incorrect answer for MCQ question
     std::vector<std::string> incorrectAnswer = {"3"};
@@ -91,10 +106,10 @@ TEST(TestQuizSession, TestGetScore) {
 
 TEST(TestQuizSession, TestGetTimeElapsed) {
     // Create a dummy quiz for the session
-    Quiz dummyQuiz(1, "Dummy Quiz");
+    std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
 
     // Create a QuizSession with the dummy quiz
-    QuizSession quizSession(&dummyQuiz);
+    QuizSession quizSession(dummyQuiz);
 
     // Set time elapsed for the quiz session
     quizSession.SetTimeElapsed(120);
