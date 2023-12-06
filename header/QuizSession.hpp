@@ -20,7 +20,7 @@ class QuizSession {
         QuizSession(Quiz* quiz);
 
         // Submit student answers to the quiz
-        void SubmitAnswers(const std::vector<std::string>& inputAnswers);
+        void SubmitAnswers(const std::vector<std::string>& inputAnswers, const std::vector<Question>& questions);
 
         // Get the score achieved in the quiz
         int GetScore() const;
