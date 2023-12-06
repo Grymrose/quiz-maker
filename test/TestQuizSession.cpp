@@ -44,7 +44,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     std::cout << "Submitting answers:" << std::endl;
 
     // For MCQ question
-    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\:" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
     mcqQuestion.EditPossibleAnswer();
 
     // For TF question
