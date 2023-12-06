@@ -17,13 +17,13 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     std::vector<Question *> questions;
 
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-    mcqQuestion.AddPossibleAnswer("3");
-    mcqQuestion.AddPossibleAnswer("4");
+    mcqQuestion.AddPossibleAnswer("6");
+    mcqQuestion.AddPossibleAnswer("5");
     mcqQuestion.AddPossibleAnswer("5");
     questions.push_back(&mcqQuestion);
 
     QuestionTF tfQuestion(2, 5, "Is the sky blue?");
-    tfQuestion.AddPossibleAnswer("True");
+    tfQuestion.AddPossibleAnswer("False");
     tfQuestion.AddPossibleAnswer("False");
     questions.push_back(&tfQuestion);
 
@@ -39,7 +39,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     QuizSession quizSession(&dummyQuiz);
 
     // Submit answers for MCQ, TF, and FRQ questions
-    std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
+    std::vector<std::string> answers = {"4", "True", "Explanation"};
 
     std::cout << "Submitting answers:" << std::endl;
 
@@ -52,7 +52,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     tfQuestion.EditPossibleAnswer();
 
     // For FRQ question
-    std::cout << "For FRQ question, enter an explanation (literally type: \"Newton's explanation\"):" << std::endl;
+    std::cout << "For FRQ question, enter an explanation (literally type: \"Explanation\"):" << std::endl;
     std::cout << "New correct answer: ";
     std::string frqAnswer;
     std::getline(std::cin, frqAnswer);
@@ -72,8 +72,8 @@ TEST(TestQuizSession, TestGetScore) {
     std::vector<Question *> questions;
 
     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-    mcqQuestion.AddPossibleAnswer("3");
-    mcqQuestion.AddPossibleAnswer("4");
+    mcqQuestion.AddPossibleAnswer("6");
+    mcqQuestion.AddPossibleAnswer("5");
     mcqQuestion.AddPossibleAnswer("5");
     questions.push_back(&mcqQuestion);
 
