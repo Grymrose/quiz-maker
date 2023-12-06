@@ -65,7 +65,7 @@ void QuestionMCQ::EditPossibleAnswer(){
 	temp->Correctness = newCorrectness;
 }
 
-unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
+unsigned QuestionMCQ::ScoreQuestion(const std::string& studentAnswer){
     std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
     std::string AnswerString = GenerateAnswerString();
 

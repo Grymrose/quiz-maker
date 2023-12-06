@@ -21,7 +21,7 @@ public:
     ~QuestionMCQ();
     void AddPossibleAnswer(std::string PossibleAnswerInput);
     void EditPossibleAnswer();
-    unsigned ScoreQuestion(std::string StudentAnswer) override;
+    unsigned ScoreQuestion(const std::string& studentAnswer) override;
     void PrintQuestion() const;
     void PrintPossibleAnswers() const;
 };

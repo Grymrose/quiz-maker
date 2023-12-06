@@ -14,7 +14,7 @@ public:
     ~QuestionFRQ();
     void AddPossibleAnswer(std::string InputAnswer);
     void EditPossibleAnswer();
-    unsigned ScoreQuestion(std::string StudentAnswer) override;
+    unsigned ScoreQuestion(const std::string& studentAnswer) override;
     void PrintQuestion() const;
 };
 
