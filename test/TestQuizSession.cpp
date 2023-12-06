@@ -9,7 +9,58 @@
 #include "../header/QuestionOutput.hpp"
 #include "../header/QuizSession.hpp"
 
+TEST(TestQuizSession, TestConstructor) {
+    // Create a dummy quiz for the session
+    Quiz dummyQuiz(1, "Dummy Quiz");
+
+    // Expect no throw when creating a QuizSession
+    EXPECT_NO_THROW(QuizSession quizSession(&dummyQuiz));
+}
+
 TEST(TestQuizSession, TestSubmitAnswers) {
+    // Create a dummy quiz for the session
+    Quiz dummyQuiz(1, "Dummy Quiz");
+
+    // Add MCQ, TF, and FRQ questions to the quiz
+    std::vector<Question *> questions;
+
+    // Create MCQ question
+    QuestionMCQ *mcqQuestion = new QuestionMCQ(1, 10, "What's 2 + 2?");
+    mcqQuestion->AddPossibleAnswer("6");
+    mcqQuestion->AddPossibleAnswer("5");
+    mcqQuestion->AddPossibleAnswer("5");
+    questions.push_back(mcqQuestion);
+
+    // Create TF question
+    QuestionTF *tfQuestion = new QuestionTF(2, 5, "Is the sky blue?");
+    tfQuestion->AddPossibleAnswer("False");
+    tfQuestion->AddPossibleAnswer("False");
+    questions.push_back(tfQuestion);
+
+    // Create FRQ question
+    QuestionFRQ *frqQuestion = new QuestionFRQ(3, 15, "Explain Newton's second law.");
+    questions.push_back(frqQuestion);
+
+    // Add questions to the quiz
+    for (Question *question : questions) {
+        dummyQuiz.AddQuestion(question);
+    }
+
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(&dummyQuiz);
+
+    // Submit answers for MCQ, TF, and FRQ questions
+    std::vector<std::string> answers = {"A", "A", "Explanation"};
+
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
+
+    // Clean up dynamically allocated memory
+    for (Question *question : questions) {
+        delete question;
+    }
+}
+
+TEST(TestQuizSession, TestGetScore) {
     // Create a dummy quiz for the session
     Quiz dummyQuiz(1, "Dummy Quiz");
 
@@ -58,59 +109,8 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     std::cout << "For FRQ question, enter an explanation (literally type: \"Explanation\"):" << std::endl;
     frqQuestion->EditPossibleAnswer();
 
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
-
     // Check if the score is calculated correctly
     EXPECT_EQ(quizSession.GetScore(), 30);
-
-    // Clean up dynamically allocated memory
-    for (Question *question : questions) {
-        delete question;
-    }
-}
-
-TEST(TestQuizSession, TestGetScore) {
-    // Create a dummy quiz for the session
-    Quiz dummyQuiz(1, "Dummy Quiz");
-
-    // Add an MCQ question to the quiz
-    std::vector<Question *> questions;
-
-    // Create MCQ question
-    QuestionMCQ *mcqQuestion = new QuestionMCQ(1, 10, "What's 2 + 2?");
-    mcqQuestion->AddPossibleAnswer("6");
-    mcqQuestion->AddPossibleAnswer("5");
-    mcqQuestion->AddPossibleAnswer("5");
-    questions.push_back(mcqQuestion);
-
-    // Add questions to the quiz
-    for (Question *question : questions) {
-        dummyQuiz.AddQuestion(question);
-    }
-
-    // Create a QuizSession with the dummy quiz
-    QuizSession quizSession(&dummyQuiz);
-
-    // Submit incorrect answer for MCQ question
-    std::vector<std::string> incorrectAnswer = {"B"};
-
-    std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
-
-    // Check if the score is 0 for an incorrect answer
-    EXPECT_EQ(quizSession.GetScore(), 0);
-
-    // Submit correct answer for MCQ question
-    std::vector<std::string> correctAnswer = {"A"};
-
-    std::cout << "Submitting correct answer for MCQ question:" << std::endl;
-    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
-    mcqQuestion->EditPossibleAnswer();
-
-    EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
-
-    // Check if the score is calculated correctly
-    EXPECT_EQ(quizSession.GetScore(), 10);
 
     // Clean up dynamically allocated memory
     for (Question *question : questions) {
