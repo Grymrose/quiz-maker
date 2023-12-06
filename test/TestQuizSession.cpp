@@ -42,7 +42,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
     QuizSession quizSession(&dummyQuiz);
 
     // Submit answers for MCQ, TF, and FRQ questions
-    std::vector<std::string> answers = {"4", "True", "Explanation"};
+    std::vector<std::string> answers = {"A", "A", "Explanation"};
 
     std::cout << "Submitting answers:" << std::endl;
 
@@ -92,7 +92,7 @@ TEST(TestQuizSession, TestGetScore) {
     QuizSession quizSession(&dummyQuiz);
 
     // Submit incorrect answer for MCQ question
-    std::vector<std::string> incorrectAnswer = {"3"};
+    std::vector<std::string> incorrectAnswer = {"B"};
 
     std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
     EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
@@ -101,7 +101,7 @@ TEST(TestQuizSession, TestGetScore) {
     EXPECT_EQ(quizSession.GetScore(), 0);
 
     // Submit correct answer for MCQ question
-    std::vector<std::string> correctAnswer = {"4"};
+    std::vector<std::string> correctAnswer = {"A"};
 
     std::cout << "Submitting correct answer for MCQ question:" << std::endl;
     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
