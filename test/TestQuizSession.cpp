@@ -56,10 +56,7 @@ TEST(TestQuizSession, TestSubmitAnswers) {
 
     // For FRQ question
     std::cout << "For FRQ question, enter an explanation (literally type: \"Explanation\"):" << std::endl;
-    std::cout << "New correct answer: ";
-    std::string frqAnswer;
-    std::getline(std::cin, frqAnswer);
-    answers.push_back(frqAnswer);
+    frqQuestion->EditPossibleAnswer();
 
     EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
 
