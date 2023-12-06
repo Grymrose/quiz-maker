@@ -21,7 +21,7 @@ void QuestionFRQ::EditPossibleAnswer(){
 	PossibleAnswer = QuestionOutput::GetUserInputString("New correct answer: ");
 }
 
-unsigned QuestionFRQ::ScoreQuestion(const std::string& StudentAnswer){
+unsigned QuestionFRQ::ScoreQuestion(std::string StudentAnswer){
 	if(PossibleAnswer == StudentAnswer){
 		return PossiblePoints;
 	}else{
