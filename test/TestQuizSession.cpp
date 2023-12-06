@@ -1,119 +1,122 @@
-// #include <iostream>
-// #include <vector>
-// #include <memory>
-// #include "gtest/gtest.h"
-// #include "../header/Quiz.hpp"
-// #include "../header/Question.hpp"
-// #include "../header/QuestionMCQ.hpp"
-// #include "../header/QuestionFRQ.hpp"
-// #include "../header/QuestionTF.hpp"
-// #include "../header/QuestionOutput.hpp"
-// #include "../header/QuizSession.hpp"
+#include <iostream>
+#include <vector>
+#include "gtest/gtest.h"
+#include "../header/Quiz.hpp"
+#include "../header/Question.hpp"
+#include "../header/QuestionMCQ.hpp"
+#include "../header/QuestionFRQ.hpp"
+#include "../header/QuestionTF.hpp"
+#include "../header/QuestionOutput.hpp"
+#include "../header/QuizSession.hpp"
 
-// TEST(TestQuizSession, TestSubmitAnswers) {
-//     // Create a dummy quiz for the session
-//     std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
+TEST(TestQuizSession, TestSubmitAnswers) {
+    // Create a dummy quiz for the session
+    Quiz dummyQuiz(1, "Dummy Quiz");
 
-//     // Add MCQ, TF, and FRQ questions to the quiz
-//     std::vector<Question *> questions;
-    
-//     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-//     mcqQuestion.AddPossibleAnswer("3");
-//     mcqQuestion.AddPossibleAnswer("4");
-//     mcqQuestion.AddPossibleAnswer("5");
-//     questions.push_back(&mcqQuestion);
+    // Add MCQ, TF, and FRQ questions to the quiz
+    std::vector<Question *> questions;
 
-//     QuestionTF tfQuestion(2, 5, "Is the sky blue?");
-//     tfQuestion.AddPossibleAnswer("True");
-//     tfQuestion.AddPossibleAnswer("False");
-//     questions.push_back(&tfQuestion);
+    QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
+    mcqQuestion.AddPossibleAnswer("3");
+    mcqQuestion.AddPossibleAnswer("4");
+    mcqQuestion.AddPossibleAnswer("5");
+    questions.push_back(&mcqQuestion);
 
-//     QuestionFRQ frqQuestion(3, 15, "Explain Newton's second law.");
-//     questions.push_back(&frqQuestion);
+    QuestionTF tfQuestion(2, 5, "Is the sky blue?");
+    tfQuestion.AddPossibleAnswer("True");
+    tfQuestion.AddPossibleAnswer("False");
+    questions.push_back(&tfQuestion);
 
-//     // Add questions to the quiz
-//     for (Question *question : questions) {
-//         dummyQuiz->AddQuestion(question);
-//     }
+    QuestionFRQ frqQuestion(3, 15, "Explain Newton's second law.");
+    questions.push_back(&frqQuestion);
 
-//     // Create a QuizSession with the dummy quiz
-//     QuizSession quizSession(dummyQuiz);
+    // Add questions to the quiz
+    for (Question *question : questions) {
+        dummyQuiz.AddQuestion(question);
+    }
 
-//     // Submit answers for MCQ, TF, and FRQ questions
-//     std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
-//     std::cout << "Submitting answers:" << std::endl;
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(&dummyQuiz);
 
-//     // For MCQ question
-//     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\:" << std::endl;
-//     mcqQuestion.EditPossibleAnswer();
+    // Submit answers for MCQ, TF, and FRQ questions
+    std::vector<std::string> answers = {"4", "True", "Newton's explanation"};
 
-//     // For TF question
-//     std::cout << "For TF question, change \"A\" prompt to \"True\" and set to \"true\":" << std::endl;
-//     tfQuestion.EditPossibleAnswer();
+    std::cout << "Submitting answers:" << std::endl;
 
-//     // For FRQ question
-//     std::cout << "For FRQ question, enter an explanation (literally type: \"Newton's explanation\"):" << std::endl;
-//     std::cout << "New correct answer: ";
-//     std::string frqAnswer;
-//     std::getline(std::cin, frqAnswer);
-//     answers.push_back(frqAnswer);
+    // For MCQ question
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\:" << std::endl;
+    mcqQuestion.EditPossibleAnswer();
 
-//     EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
+    // For TF question
+    std::cout << "For TF question, change \"A\" prompt to \"True\" and set to \"true\":" << std::endl;
+    tfQuestion.EditPossibleAnswer();
 
-//     // Check if the score is calculated correctly
-//     EXPECT_EQ(quizSession.GetScore(), 30);
-// }
+    // For FRQ question
+    std::cout << "For FRQ question, enter an explanation (literally type: \"Newton's explanation\"):" << std::endl;
+    std::cout << "New correct answer: ";
+    std::string frqAnswer;
+    std::getline(std::cin, frqAnswer);
+    answers.push_back(frqAnswer);
 
-// TEST(TestQuizSession, TestGetScore) {
-//     // Create a dummy quiz for the session
-//     std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(answers));
 
-//     // Add an MCQ question to the quiz
-//     std::vector<Question *> questions;
+    // Check if the score is calculated correctly
+    EXPECT_EQ(quizSession.GetScore(), 30);
+}
 
-//     QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
-//     mcqQuestion.AddPossibleAnswer("3");
-//     mcqQuestion.AddPossibleAnswer("4");
-//     mcqQuestion.AddPossibleAnswer("5");
-//     questions.push_back(&mcqQuestion);
+TEST(TestQuizSession, TestGetScore) {
+    // Create a dummy quiz for the session
+    Quiz dummyQuiz(1, "Dummy Quiz");
 
-//     // Add questions to the quiz
-//     for (Question *question : questions) {
-//         dummyQuiz->AddQuestion(question);
-//     }
+    // Add an MCQ question to the quiz
+    std::vector<Question *> questions;
 
-//     // Create a QuizSession with the dummy quiz
-//     QuizSession quizSession(dummyQuiz);
+    QuestionMCQ mcqQuestion(1, 10, "What's 2 + 2?");
+    mcqQuestion.AddPossibleAnswer("3");
+    mcqQuestion.AddPossibleAnswer("4");
+    mcqQuestion.AddPossibleAnswer("5");
+    questions.push_back(&mcqQuestion);
 
-//     // Submit incorrect answer for MCQ question
-//     std::vector<std::string> incorrectAnswer = {"3"};
-//     std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
-//     EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
+    // Add questions to the quiz
+    for (Question *question : questions) {
+        dummyQuiz.AddQuestion(question);
+    }
 
-//     // Check if the score is 0 for an incorrect answer
-//     EXPECT_EQ(quizSession.GetScore(), 0);
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(&dummyQuiz);
 
-//     // Submit correct answer for MCQ question
-//     std::vector<std::string> correctAnswer = {"4"};
-//     std::cout << "Submitting correct answer for MCQ question:" << std::endl;
-//     std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
-//     mcqQuestion.EditPossibleAnswer();
-//     EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
+    // Submit incorrect answer for MCQ question
+    std::vector<std::string> incorrectAnswer = {"3"};
 
-//     // Check if the score is calculated correctly
-//     EXPECT_EQ(quizSession.GetScore(), 10);
-// }
+    std::cout << "Submitting incorrect answer for MCQ question:" << std::endl;
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(incorrectAnswer));
 
-// TEST(TestQuizSession, TestGetTimeElapsed) {
-//     // Create a dummy quiz for the session
-//     std::shared_ptr<Quiz> dummyQuiz = std::make_shared<Quiz>(1, "Dummy Quiz");
+    // Check if the score is 0 for an incorrect answer
+    EXPECT_EQ(quizSession.GetScore(), 0);
 
-//     // Create a QuizSession with the dummy quiz
-//     QuizSession quizSession(dummyQuiz);
+    // Submit correct answer for MCQ question
+    std::vector<std::string> correctAnswer = {"4"};
 
-//     // Set time elapsed for the quiz session
-//     quizSession.SetTimeElapsed(120);
+    std::cout << "Submitting correct answer for MCQ question:" << std::endl;
+    std::cout << "For MCQ question, change \"A\" prompt to \"4\" and set to \"true\":" << std::endl;
+    mcqQuestion.EditPossibleAnswer();
 
-//     // Check if the time elapsed is retrieved correctly
-//     EXPECT_EQ(quizSession.GetTimeElapsed(), 120);
-// }
+    EXPECT_NO_THROW(quizSession.SubmitAnswers(correctAnswer));
+
+    // Check if the score is calculated correctly
+    EXPECT_EQ(quizSession.GetScore(), 10);
+}
+
+TEST(TestQuizSession, TestGetTimeElapsed) {
+    // Create a dummy quiz for the session
+    Quiz dummyQuiz(1, "Dummy Quiz");
+
+    // Create a QuizSession with the dummy quiz
+    QuizSession quizSession(&dummyQuiz);
+
+    // Set time elapsed for the quiz session
+    quizSession.SetTimeElapsed(120);
+
+    // Check if the time elapsed is retrieved correctly
+    EXPECT_EQ(quizSession.GetTimeElapsed(), 120);
+}
