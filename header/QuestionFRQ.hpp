@@ -1,7 +1,6 @@
 #ifndef __QUESTION_FRQ_HEADER__
 #define __QUESTION_FRQ_HEADER__
 
-#include <iostream>
 #include <string>
 #include "../header/Question.hpp"
 #include "../header/QuestionOutput.hpp"

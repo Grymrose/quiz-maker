@@ -1,7 +1,6 @@
 #ifndef __QUESTION_TF_HEADER__
 #define __QUESTION_TF_HEADER__
 
-#include <iostream>
 #include <string>
 #include "../header/Question.hpp"
 #include "../header/QuestionMCQ.hpp"
