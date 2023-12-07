@@ -1,4 +1,4 @@
-#include "..header/MainMenu.cpp"
+#include "..header/MainMenu.hpp"
 
 MainMenu::MainMenu() : isSignedIn(false), userID(0) {}
 
