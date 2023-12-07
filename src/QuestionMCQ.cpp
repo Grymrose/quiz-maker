@@ -66,28 +66,33 @@ void QuestionMCQ::EditPossibleAnswer(){
 }
 
 unsigned QuestionMCQ::ScoreQuestion(std::string StudentAnswer){
-	std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
-	std::string AnswerString = GenerateAnswerString();
+    std::transform(StudentAnswer.begin(), StudentAnswer.end(), StudentAnswer.begin(), ::toupper);
+    std::string AnswerString = GenerateAnswerString();
 
-	// Sort and find intersection
-	std::sort(StudentAnswer.begin(), StudentAnswer.end());
-	std::string Intersection;
-	std::set_intersection(AnswerString.begin(), AnswerString.end(), StudentAnswer.begin(), StudentAnswer.end(), std::back_inserter(Intersection));
-	unsigned NumberCorrect = Intersection.size();
-	unsigned NumberTotal = 0;
+    // Sort and find intersection
+    std::sort(StudentAnswer.begin(), StudentAnswer.end());
+    std::string Intersection;
+    std::set_intersection(AnswerString.begin(), AnswerString.end(), StudentAnswer.begin(), StudentAnswer.end(), std::back_inserter(Intersection));
 
-	// Count total number of correct answers
-	PossibleAnswers * Temp = MyPossibleAnswers;
-	while(Temp != nullptr){
-		if(Temp->Correctness){
-			NumberTotal++;
-		}
-		Temp = Temp->Next;
-	}
+    unsigned NumberCorrect = Intersection.size();
+    unsigned NumberTotal = 0;
 
-	// Calculate and return the score
-	double Ratio = (NumberCorrect / static_cast<double>(NumberTotal));
-	return abs(Ratio * PossiblePoints);
+    // Count total number of correct answers
+    PossibleAnswers * Temp = MyPossibleAnswers;
+    while(Temp != nullptr){
+        if(Temp->Correctness){
+            NumberTotal++;
+        }
+        Temp = Temp->Next;
+    }
+
+    // Calculate and return the score
+    if (NumberTotal > 0) {
+        double PercentageCorrect = static_cast<double>(NumberCorrect) / static_cast<double>(NumberTotal);
+        return static_cast<unsigned>(PercentageCorrect * PossiblePoints);
+    } else {
+        return 0; // Avoid division by zero
+    }
 }
 
 std::string QuestionMCQ::GenerateAnswerString(){

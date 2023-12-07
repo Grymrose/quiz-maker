@@ -7,6 +7,7 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 INCLUDE_DIRECTORIES(
 	header
 	test/googletest/googletest/include
+	test/googletest/googlemock/include
 )
 
 SET(SOURCES
@@ -59,6 +60,24 @@ TARGET_COMPILE_OPTIONS(RunUserTests
 	PRIVATE -g
 )
 
+ADD_EXECUTABLE(RunQuizTests
+	${SOURCES}
+	test/TestQuiz.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuizTests
+	PRIVATE -g
+)
+
+ADD_EXECUTABLE(RunQuizSessionTests
+	${SOURCES}
+	test/TestQuizSession.cpp
+)
+
+TARGET_COMPILE_OPTIONS(RunQuizSessionTests
+	PRIVATE -g
+)
+
 #SET_TARGET_PROPERTIES(RunAllTests
 #	PROPERTIES
 #	RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
@@ -68,3 +87,5 @@ ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/test/googletest)
 target_link_libraries(RunQuestionTests gtest gtest_main)
 target_link_libraries(RunQuestionPoolTests gtest gtest_main)
 target_link_libraries(RunUserTests gtest gtest_main)
+target_link_libraries(RunQuizTests gtest gtest_main)
+target_link_libraries(RunQuizSessionTests gtest gtest_main)

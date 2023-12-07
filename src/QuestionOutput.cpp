@@ -40,5 +40,5 @@ bool QuestionOutput::GetCorrectnessFromUser() {
 		}
         input = QuestionOutput::GetUserInputString("Correctness state (1 for true, 0 for false, \"SKIP\" to keep original): ");
     }
-    std::cout << std::endl << std::endl;
+    return false;
 }

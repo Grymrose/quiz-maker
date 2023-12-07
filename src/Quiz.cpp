@@ -1,24 +1,41 @@
 #include "../header/Quiz.hpp"
-#include <iostream>
-Quiz::Quiz() {
-    QuizID = 0;
-    Title = "";
-    Availability = false;
-    Attempts = 1; 
-}
 
-Quiz::~Quiz() {
-    
-}
+// Constructor implementation
+Quiz::Quiz(int quizID, const std::string& title, bool availability, int attempts)
+    : quizID(quizID), title(title), availability(availability), attempts(attempts) {}
 
+// Setter methods implementation
 void Quiz::setAvailability(bool availability) {
-    Availability = availability;
+    this->availability = availability;
 }
 
 void Quiz::setAttempts(int attempts) {
-    Attempts = attempts;
+    this->attempts = attempts;
 }
 
-void Quiz::AddQuestion(std::shared_ptr<Question> question) {
-    Questions.push_back(question);
+// Add a question to the quiz
+void Quiz::AddQuestion(Question* question) {
+    questions.push_back(question);
+}
+
+// Getter method for questions
+const std::vector<Question*>& Quiz::GetQuestions() const {
+    return questions;
+}
+
+// Getter methods for other properties
+int Quiz::GetQuizID() const {
+    return quizID;
+}
+
+const std::string& Quiz::GetTitle() const {
+    return title;
+}
+
+bool Quiz::IsAvailable() const {
+    return availability;
+}
+
+int Quiz::GetAttempts() const {
+    return attempts;
 }
