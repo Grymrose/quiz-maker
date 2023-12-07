@@ -1,9 +1,8 @@
 #ifndef __QUESTION_HEADER__
 #define __QUESTION_HEADER__
-
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
 class Question{
 protected:
@@ -20,7 +19,6 @@ public:
 	virtual unsigned ScoreQuestion(std::string StudentAnswer) = 0;
 	unsigned GetQuestionID();
 	virtual void PrintQuestion() const = 0;
-	// friend std::ostream & operator<<(std::ostream & out, const Question & Q);
 };
 
 #endif

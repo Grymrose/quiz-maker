@@ -1,7 +1,6 @@
 #ifndef __STUDENT_HEADER__
 #define __STUDENT_HEADER__
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include "../header/User.hpp"
