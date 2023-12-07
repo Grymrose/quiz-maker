@@ -110,7 +110,7 @@ void Quiz::ScheduleQuiz()
 
 void Quiz::printSchedule()
 {
-    std::cout << "Quiz Schedule:" << std::endl << "Date: " << this->Schedule.at(0) << "/" << this->Schedule.at(1) << std::endl;
+    std::cout << "Date: " << this->Schedule.at(0) << "/" << this->Schedule.at(1) << std::endl;
     std::cout << "Time: " << this->Schedule.at(2) << ":" << this->Schedule.at(3);
     if (this->Schedule.at(3) == 0)
         std::cout << this->Schedule.at(3);
