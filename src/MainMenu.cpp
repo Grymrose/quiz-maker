@@ -1,6 +1,6 @@
 #include "../header/MainMenu.hpp"
 
-MainMenu::MainMenu() : isSignedIn(false), userID(0) {}
+MainMenu::MainMenu() : isSignedIn(false), instructorID(0), studentID(0) {}
 
 int main() {
     MainMenu mainMenu;
@@ -66,7 +66,7 @@ void MainMenu::DisplayMenu() {
 
 void MainMenu::CreateQuiz() {
     if (isSignedIn) {
-        Instructor* instructor = instructors[userID];
+        Instructor* instructor = instructors[instructorID];
         if (instructor) {
             std::string title;
             std::cout << "Enter the title of the quiz: ";
@@ -86,7 +86,7 @@ void MainMenu::CreateQuiz() {
 
 void MainMenu::EditQuiz() {
     if (isSignedIn) {
-        Instructor* instructor = instructors[userID];
+        Instructor* instructor = instructors[instructorID];
         if (instructor) {
             std::vector<Quiz>& quizzes = instructor->GetQuizzes();
             if (!quizzes.empty()) {
@@ -120,7 +120,7 @@ void MainMenu::EditQuiz() {
 
 void MainMenu::TakeQuiz() {
     if (isSignedIn) {
-        Student* student = students[userID];
+        Student* student = students[studentID];
         if (student) {
             std::vector<Quiz>& quizzes = student->ViewAvailableQuizzes();
             if (!quizzes.empty()) {
