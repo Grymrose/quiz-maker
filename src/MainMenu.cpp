@@ -44,8 +44,11 @@ int main() {
 }
 
 MainMenu::~MainMenu() { // Clean up dynamically allocated memory for users
-    for (User* user : users) {
-        delete user;
+    for (Instructor* instructor : instructors) {
+        delete instructor;
+    }
+    for (Student* student : students) {
+        delete student;
     }
 }
 
@@ -61,15 +64,15 @@ void MainMenu::DisplayMenu() {
     std::cout << "=================" << std::endl;
 }
 
-void MainMenu::CreateQuiz() { // Implement the creation of a quiz
+void MainMenu::CreateQuiz() {
     if (isSignedIn) {
-        Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
+        Instructor* instructor = instructors[userID];
         if (instructor) {
             std::string title;
             std::cout << "Enter the title of the quiz: ";
             std::getline(std::cin, title);
 
-            Quiz newQuiz(users.size(), title);
+            Quiz newQuiz(instructors.size(), title);
             instructor->AddQuiz(newQuiz);
 
             std::cout << "Quiz created successfully." << std::endl;
@@ -81,12 +84,11 @@ void MainMenu::CreateQuiz() { // Implement the creation of a quiz
     }
 }
 
-void MainMenu::EditQuiz() { // Implement the editing of a quiz
+void MainMenu::EditQuiz() {
     if (isSignedIn) {
-        Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
+        Instructor* instructor = instructors[userID];
         if (instructor) {
-            // Assume the instructor selects a quiz to edit
-            std::vector<Quiz> quizzes = instructor->GetQuizzes();
+            std::vector<Quiz>& quizzes = instructor->GetQuizzes();
             if (!quizzes.empty()) {
                 std::cout << "Select a quiz to edit:" << std::endl;
                 for (size_t i = 0; i < quizzes.size(); ++i) {
@@ -98,9 +100,8 @@ void MainMenu::EditQuiz() { // Implement the editing of a quiz
                 std::cin >> selection;
 
                 if (selection > 0 && selection <= quizzes.size()) {
-                    // Assume the instructor edits the selected quiz
-                    quizzes[selection - 1].setAvailability(false);
-                    quizzes[selection - 1].setAttempts(2);
+                    quizzes[selection - 1].SetAvailability(false);
+                    quizzes[selection - 1].SetAttempts(2);
 
                     std::cout << "Quiz edited successfully." << std::endl;
                 } else {
@@ -118,13 +119,10 @@ void MainMenu::EditQuiz() { // Implement the editing of a quiz
 }
 
 void MainMenu::TakeQuiz() {
-    // Implement the process of taking a quiz
-    // Example: Let's assume a student is signed in to take a quiz
     if (isSignedIn) {
-        Student* student = dynamic_cast<Student*>(users[userID]);
+        Student* student = students[userID];
         if (student) {
-            // Assume the student selects a quiz to take
-            std::vector<Quiz> quizzes = student->ViewAvailableQuizzes();
+            std::vector<Quiz>& quizzes = student->ViewAvailableQuizzes();
             if (!quizzes.empty()) {
                 std::cout << "Select a quiz to take:" << std::endl;
                 for (size_t i = 0; i < quizzes.size(); ++i) {
@@ -136,7 +134,6 @@ void MainMenu::TakeQuiz() {
                 std::cin >> selection;
 
                 if (selection > 0 && selection <= quizzes.size()) {
-                    // Assume the student takes the selected quiz
                     QuizSession quizSession(&quizzes[selection - 1]);
                     quizSession.SubmitAnswers({"A", "True", "Explanation"});
 
@@ -158,7 +155,6 @@ void MainMenu::TakeQuiz() {
 }
 
 void MainMenu::AddUser() {
-    // Implement the addition of a user
     std::string username, password;
     char userType;
 
@@ -172,10 +168,10 @@ void MainMenu::AddUser() {
     std::cin >> userType;
 
     if (userType == 'I' || userType == 'i') {
-        users.push_back(new Instructor(username, password, true));
+        instructors.push_back(new Instructor(username, password, true));
         std::cout << "Instructor added successfully." << std::endl;
     } else if (userType == 'S' || userType == 's') {
-        users.push_back(new Student(username, password, false));
+        students.push_back(new Student(username, password, false));
         std::cout << "Student added successfully." << std::endl;
     } else {
         std::cout << "Invalid user type." << std::endl;
@@ -183,7 +179,6 @@ void MainMenu::AddUser() {
 }
 
 void MainMenu::UserLogin() {
-    // Implement the user login
     std::string username, password;
     std::cout << "Enter the username: ";
     std::getline(std::cin, username);
@@ -193,12 +188,25 @@ void MainMenu::UserLogin() {
 
     bool loggedIn = false;
 
-    for (unsigned int i = 0; i < users.size(); ++i) {
-        if (users[i]->Login(username, password)) {
+    for (unsigned int i = 0; i < instructors.size(); ++i) {
+        if (instructors[i]->Login(username, password)) {
             isSignedIn = true;
-            userID = i;
+            instructorID = i;
             loggedIn = true;
+            studentID = 0;  // Reset studentID when an instructor logs in
             break;
+        }
+    }
+
+    if (!loggedIn) {
+        for (unsigned int i = 0; i < students.size(); ++i) {
+            if (students[i]->Login(username, password)) {
+                isSignedIn = true;
+                studentID = i;
+                loggedIn = true;
+                instructorID = 0;  // Reset instructorID when a student logs in
+                break;
+            }
         }
     }
 
@@ -210,7 +218,8 @@ void MainMenu::UserLogin() {
 }
 
 void MainMenu::UserLogout() {
-    // Implement the user logout
     isSignedIn = false;
+    instructorID = 0;
+    studentID = 0;
     std::cout << "Logout successful. Goodbye!" << std::endl;
 }
