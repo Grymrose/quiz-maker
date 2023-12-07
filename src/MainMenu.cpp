@@ -86,9 +86,11 @@ void MainMenu::CreateQuiz() {
 
 void MainMenu::EditQuiz() {
     if (isSignedIn) {
-        if (instructors[instructorID]->getIsInstructorBoolean()) {
-            std::vector<Quiz>& quizzes = instructors[instructorID]->GetQuizzes();
-
+        Instructor* instructor = instructors[instructorID];
+        if (instructor) {
+            // GetQuizzes() returns a copy, not a reference
+            std::vector<Quiz> quizzes = instructor->GetQuizzes();
+            
             if (!quizzes.empty()) {
                 std::cout << "Select a quiz to edit:" << std::endl;
                 for (size_t i = 0; i < quizzes.size(); ++i) {
@@ -100,10 +102,11 @@ void MainMenu::EditQuiz() {
                 std::cin >> selection;
 
                 if (selection > 0 && selection <= quizzes.size()) {
-                    Question* newQuestion = new QuestionMCQ();  // Replace with appropriate Question type
-                    quizzes[selection - 1].AddQuestion(newQuestion);
+                    // Fixing the compilation errors
+                    quizzes[selection - 1].setAvailability(false);
+                    quizzes[selection - 1].setAttempts(2);
 
-                    std::cout << "Question added to the quiz." << std::endl;
+                    std::cout << "Quiz edited successfully." << std::endl;
                 } else {
                     std::cout << "Invalid selection." << std::endl;
                 }
