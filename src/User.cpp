@@ -6,3 +6,7 @@ User::User(std::string username, std::string password, bool isInstructor)
 bool User::Login(std::string usernameEntered, std::string passwordEntered) {
     return (username == usernameEntered && password == passwordEntered) ? true : false;
 }
+
+bool User::getIsInstructorBoolean() {
+    return isInstructor;
+}
