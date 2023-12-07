@@ -1,5 +1,6 @@
 #ifndef __QUESTION_HEADER__
 #define __QUESTION_HEADER__
+#include <iostream>
 #include <string>
 #include <vector>
 

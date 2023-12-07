@@ -1,5 +1,5 @@
 #include <string>
-#include "QuestionFRQ.hpp"
+#include "../header/QuestionFRQ.hpp"
 
 QuestionFRQ::QuestionFRQ(unsigned ID, unsigned Points, std::string InputQuestion) : Question(ID, Points, InputQuestion){
 	QuestionID = ID;
