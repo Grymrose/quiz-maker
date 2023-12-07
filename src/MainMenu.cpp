@@ -59,7 +59,7 @@ void MainMenu::CreateQuiz() {
     // Implement the creation of a quiz
     // Example: Let's assume an instructor is signed in to create a quiz
     if (isSignedIn) {
-        Instructor* instructor = dynamic_cast<Instructor*>(&users[userID]);
+        Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
         if (instructor) {
             std::string title;
             std::cout << "Enter the title of the quiz: ";
@@ -81,7 +81,7 @@ void MainMenu::EditQuiz() {
     // Implement the editing of a quiz
     // Example: Let's assume an instructor is signed in to edit a quiz
     if (isSignedIn) {
-        Instructor* instructor = dynamic_cast<Instructor*>(&users[userID]);
+        Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
         if (instructor) {
             // Assume the instructor selects a quiz to edit
             std::vector<Quiz> quizzes = instructor->GetQuizzes();
@@ -119,7 +119,7 @@ void MainMenu::TakeQuiz() {
     // Implement the process of taking a quiz
     // Example: Let's assume a student is signed in to take a quiz
     if (isSignedIn) {
-        Student* student = dynamic_cast<Student*>(&users[userID]);
+        Student* student = dynamic_cast<Student*>(users[userID]);
         if (student) {
             // Assume the student selects a quiz to take
             std::vector<Quiz> quizzes = student->ViewAvailableQuizzes();
@@ -170,10 +170,10 @@ void MainMenu::AddUser() {
     std::cin >> userType;
 
     if (userType == 'I' || userType == 'i') {
-        users.push_back(Instructor(username, password, true));
+        users.push_back(new Instructor(username, password, true));
         std::cout << "Instructor added successfully." << std::endl;
     } else if (userType == 'S' || userType == 's') {
-        users.push_back(Student(username, password, false));
+        users.push_back(new Student(username, password, false));
         std::cout << "Student added successfully." << std::endl;
     } else {
         std::cout << "Invalid user type." << std::endl;
@@ -192,7 +192,7 @@ void MainMenu::UserLogin() {
     bool loggedIn = false;
 
     for (unsigned int i = 0; i < users.size(); ++i) {
-        if (users[i].Login(username, password)) {
+        if (users[i]->Login(username, password)) {
             isSignedIn = true;
             userID = i;
             loggedIn = true;

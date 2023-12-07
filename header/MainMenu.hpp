@@ -13,8 +13,8 @@
 #include "../header/QuestionFRQ.hpp"
 
 class MainMenu {
-    private:
-        std::vector<User> users;
+private:
+        std::vector<User*> users;
         bool isSignedIn;
         unsigned userID;
 
@@ -27,6 +27,6 @@ class MainMenu {
         void AddUser();
         void UserLogin();
         void UserLogout();
-};
+    };
 
 #endif
