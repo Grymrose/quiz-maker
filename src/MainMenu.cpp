@@ -43,6 +43,12 @@ int main() {
     return 0;
 }
 
+MainMenu::~MainMenu() { // Clean up dynamically allocated memory for users
+    for (User* user : users) {
+        delete user;
+    }
+}
+
 void MainMenu::DisplayMenu() {
     std::cout << "=== Main Menu ===" << std::endl;
     std::cout << "1. Create Quiz" << std::endl;
@@ -55,9 +61,7 @@ void MainMenu::DisplayMenu() {
     std::cout << "=================" << std::endl;
 }
 
-void MainMenu::CreateQuiz() {
-    // Implement the creation of a quiz
-    // Example: Let's assume an instructor is signed in to create a quiz
+void MainMenu::CreateQuiz() { // Implement the creation of a quiz
     if (isSignedIn) {
         Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
         if (instructor) {
@@ -77,9 +81,7 @@ void MainMenu::CreateQuiz() {
     }
 }
 
-void MainMenu::EditQuiz() {
-    // Implement the editing of a quiz
-    // Example: Let's assume an instructor is signed in to edit a quiz
+void MainMenu::EditQuiz() { // Implement the editing of a quiz
     if (isSignedIn) {
         Instructor* instructor = dynamic_cast<Instructor*>(users[userID]);
         if (instructor) {

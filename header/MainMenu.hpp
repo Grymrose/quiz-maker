@@ -20,6 +20,7 @@ private:
 
     public:
         MainMenu();
+        ~MainMenu();
         void DisplayMenu();
         void CreateQuiz();
         void EditQuiz();
