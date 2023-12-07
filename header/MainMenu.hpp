@@ -2,6 +2,7 @@
 #define __MAIN_MENU_HEADER__
 #include <iostream>
 #include <string>
+#include <limits>
 #include <vector>
 #include "../header/Instructor.hpp"
 #include "../header/Student.hpp"
